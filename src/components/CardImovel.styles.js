@@ -63,7 +63,7 @@ export const Infos = styled.div`
 export const Botao = styled.button`
   padding: 0.5rem 1rem;
 
-  background: var(--span-color);
+  background: var(--green-color);
   color: white;
   border: none;
   border-radius: 5px;
@@ -71,7 +71,7 @@ export const Botao = styled.button`
   font-weight: bold;
 
   &:hover {
-    background: var(--hover-gray);
+    background: var(--green-hover-color);
   }
 `;
 

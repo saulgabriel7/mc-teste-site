@@ -8,7 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 // Tema global para styled-components
 const theme = {
-  fontUm: 'Inter',
+  fontUm: 'Archivo Narrow, sans-serif',
 };
 
 // Renderiza o app dentro do elemento root

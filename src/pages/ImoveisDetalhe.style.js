@@ -60,7 +60,7 @@ export const InfoRow = styled.div`
 export const Detalhes = styled.div`
   margin-top: 2rem;
   background: #fff;
-  border-left: 4px solid #0077ff;
+  border-left: 4px solid var(--primary-color);
   padding: 1rem 1.5rem;
   border-radius: 6px;
 
@@ -80,7 +80,7 @@ export const PriceHighlight = styled.div`
   margin-top: 1rem;
   font-size: 1.5rem;
   font-weight: bold;
-  color: #00a859;
+  color: var(--green-color);
 `;
 
 export const CTAButtons = styled.div`
@@ -97,11 +97,11 @@ export const CTAButtons = styled.div`
     transition: background 0.3s;
 
     &.primary {
-      background: #0077ff;
+      background: var(--primary-color);
       color: white;
 
       &:hover {
-        background: #005edc;
+        background: var(--hover-gray);
       }
     }
 
@@ -133,7 +133,7 @@ export const Facilidades = styled.div`
       &::before {
         content: '✔️';
         margin-right: 0.5rem;
-        color: #00a859;
+        color: var(--green-color);
       }
     }
   }

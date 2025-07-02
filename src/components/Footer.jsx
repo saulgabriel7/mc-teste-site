@@ -20,7 +20,7 @@ export function Footer() {
         <div className="footer-column">
           <h3>Contatos</h3>
           <h4>Whatsapp</h4>
-          <p>+55 11 987654321</p>
+          <p>+55 11 94770-8668</p>
           <p>Segunda a Sexta das 9h às 18h</p>
           <h4>Email</h4>
           <p>mc.imoveis11@gmail.com</p>
@@ -28,10 +28,10 @@ export function Footer() {
 
         <div className="footer-column">
           <h3>Links Úteis</h3>
-          <p>Comprar</p>
-          <p>Alugar</p>
-          <p>Quem Somos</p>
-          <p>Contato</p>
+          <a href="/imoveis" onClick={(e) => handleNavigation(e, '/imoveis')}>Todos os imóveis</a>
+          <a href="/sobre" onClick={(e) => handleNavigation(e, '/sobre')}>Quem Somos</a>
+          <a href="/indique-seu-imovel" onClick={(e) => handleNavigation(e, '/indique-seu-imovel')}>Indique seu imóvel</a>
+          <a href="https://wa.me/5511947708668?text=Oi,%20vim%20pelo%20site%2C%20poderia%20me%20ajudar%3F" target='_blank'>Contato</a>
         </div>
       </div>
 

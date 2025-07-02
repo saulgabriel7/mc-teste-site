@@ -43,7 +43,7 @@ const imoveisMock = [
       '/IMV001/18.jpeg',
     ],
     imovel: 'Galpão, 1566 m² - Vila Cardoso - Capivari/SP',
-    descricao: 'Ótimo galpão comercial, com 1566 m² de área construída, excelente para supermercado ou agencia de carros.',
+    descricao: "Excelente galpão comercial de 1.566 m² localizado na estratégica Vila Cardoso, em Capivari/SP. Ideal para grandes operações como supermercados, concessionárias de veículos ou centros de distribuição. Conta com amplo espaço interno, pé direito elevado para facilitar a logística, áreas adequadas para carga e descarga, estacionamento para colaboradores e clientes, além de fácil acesso às principais rodovias da região. Ótima oportunidade para negócios que buscam expansão com infraestrutura completa e localização privilegiada.",
     cidade: 'Capivari',
     bairro: 'Vila Cardoso',
     preco: 'R$ 50.000 / mês'
@@ -65,7 +65,7 @@ const imoveisMock = [
       '/IMV002/10.jpeg',
     ],
     imovel: 'Galpão, 949 m² - Bela Vista/SP',
-    descricao: '- Área total de 949 m², bom fluxo de pedestres e veículos',
+    descricao: "Galpão com 949 m² de área total, situado no bairro Bela Vista, São Paulo. Excelente fluxo de pedestres e veículos, ideal para empresas que necessitam de boa visibilidade e acessibilidade. Espaço versátil para armazenamento, comércio ou serviços, com pé direito adequado e área para operações logísticas. Próximo a vias principais e com facilidades de transporte público na região.",
     cidade: 'São Paulo',
     bairro: 'Bela Vista',
     preco: 'R$ 25.000 / mês'
@@ -97,7 +97,7 @@ const imoveisMock = [
         '/IMV003/21.jpeg',
     ],
     imovel: 'Galpão, 1000m² - Ubattuba/SP',
-    descricao: 'Ótimo galpão comercial, com 1566 m² de área construída, excelente para supermercado ou agência de carros.',
+    descricao: "Galpão comercial de 1.000 m² localizado no centro de Ubatuba, perfeito para diversos segmentos comerciais. Estrutura robusta com pé direito alto, área ampla para armazenamento, além de espaço para carga e descarga. Localização privilegiada, próximo a vias de acesso e com potencial para atender diferentes tipos de negócios,como supermercados, distribuidores ou oficinas. Uma excelente oportunidade para empresas que buscam expansão.",
     cidade: 'Ubatuba',
     bairro: 'Centro',
     preco: 'R$ 35.000 / mês',
@@ -168,7 +168,7 @@ const imoveisMock = [
       '/IMV004/59.jpeg',    
     ],
     imovel: 'Galpão, 1000m² - São Paulo/SP',
-    descricao: 'Ótimo galpão comercial, com 1566 m² de área construída.',
+    descricao: "Galpão comercial com 1.000 m² de área construída, localizado na Vila Nova Cachoeirinha, São Paulo. Espaço amplo, com pé direito elevado e infraestrutura adequada para operações logísticas, armazenamento ou produção. Conta com áreas para carga e descarga, estacionamento e fácil acesso às principais avenidas da cidade. Ideal para empresas que buscam combinar localização estratégica e estrutura completa para seu negócio.",
     cidade: 'São Paulo',
     bairro: 'Vila Nova Cachoeirinha',
     preco: 'R$ 24.000 / mês'
@@ -179,7 +179,7 @@ const imoveisMock = [
     tipo: 'locacao',
     imagens: ['/IMV005/1.jpeg'],
     imovel: "Galpão, São José dos Campos",
-    descricao: "Galpão conta com 1596m²",
+    descricao: "Galpão industrial com 1.596 m² localizado na Vila Industrial, São José dos Campos.Estrutura moderna, pé direito alto, espaço para carga e descarga, e ampla área interna para operações diversas. Região com excelente infraestrutura, próximo a principais rodovias e centros comerciais. Ideal para empresas que buscam um local estratégico e funcional para suas atividades.",
     cidade: "São José dos Campos",
     bairro: "Vila Industrial",
     preco: 'R$ 60.000 / mês'
@@ -238,7 +238,7 @@ const imoveisMock = [
     '/IMV006/48.jpeg',
     ],
     imovel: "Galpão, Centro São José dos Campos",
-    descricao: "Galpão conta com 1400m²",
+    descricao: "Espaçoso galpão de 1.400 m² no Centro de São José dos Campos, ideal para empresas que buscam visibilidade e acessibilidade central. Conta com pé direito elevado, área para carga e descarga e estacionamento. Próximo a importantes vias de circulação e com infraestrutura para operações comerciais ou industriais.",
     cidade: "São José dos Campos",
     bairro: "Centro",
     preco: 'R$ 28.000 / mês'
@@ -257,7 +257,7 @@ const imoveisMock = [
     '/IMV007/7.jpeg',
     ],
     imovel: "Galpão, Vila Guilherme",
-    descricao: "Galpão conta com 1226m² com 2 Pavimentos",
+    descricao: "Galpão com 1.226 m² distribuídos em dois pavimentos, localizado na Vila Guilherme, São Paulo. Estrutura completa para armazenamento, produção ou logística, com área para carga e descarga e estacionamento. Fácil acesso às principais rodovias e vias urbanas, ideal para negócios que demandam infraestrutura robusta.",
     cidade: "São Paulo",
     bairro: "Vila Guilherme",
     preco: 'R$ 45.000 / mês'
@@ -276,7 +276,7 @@ const imoveisMock = [
     '/IMV008/7.jpeg',
     ],
     imovel: "Galpão, Valinhos",
-    descricao: "Galpão conta com 1000m²",
+    descricao: 'Galpão comercial de 1.000 m² no bairro Santa Cruz, Valinhos. Estrutura moderna, pé direito alto, área ampla para armazenamento e operações, além de estacionamento. Localização estratégica, próxima a importantes rodovias da região, facilitando logística e distribuição.',
     cidade: "Valinhos",
     bairro: "Santa Cruz",
     preco: 'R$ 50.000 / mês'
@@ -298,7 +298,7 @@ const imoveisMock = [
     '/IMV009/10.jpeg',
     ],
     imovel: "Galpão, Vila Jacuí",
-    descricao: "Galpão conta com 900m²",
+    descricao: "Galpão com 900 m² localizado na Vila Jacuí, São Paulo. Espaço funcional com pé direito adequado, áreas para carga e descarga, estacionamento e fácil acesso.Excelente para pequenas e médias empresas que buscam infraestrutura completa em região estratégica.",
     cidade: "São Paulo",
     bairro: "Vila Jacuí",
     preco: 'R$ 50.000 / mês'
@@ -317,7 +317,7 @@ const imoveisMock = [
     '/IMV010/7.jpeg',
     ],
     imovel: "Galpão, Ribeirão Pires",
-    descricao: "Galpão conta com 900m²",
+    descricao: "Galpão com 1.500 m² localizado em Ribeirão Pires, São Paulo. Estrutura ampla, ideal para operações logísticas e industriais. Fácil acesso às principais rodovias da região. Conta com áreas para carga e descarga, estacionamento e infraestrutura adequada para atender diversas necessidades empresariais.",
     cidade: "Ribeirão Pires",
     bairro: "Centro",
     preco: 'R$ 70.000 / mês'
@@ -349,7 +349,7 @@ const imoveisMock = [
     '/IMV011/21.jpeg',
     ],
     imovel: "Galpão, Saúde",
-    descricao: "Galpão conta com 1485m²",
+    descricao: "Galpão com 1.485 m² localizado na Saúde, São Paulo. Estrutura completa para armazenamento e operações, com áreas para carga e descarga, estacionamento e fácil acesso às principais vias da região. Ideal para empresas que buscam um espaço funcional e bem localizado.",
     cidade: "São Paulo",
     bairro: "Saúde",
     preco: 'R$ 50.000 / mês'
@@ -378,7 +378,7 @@ const imoveisMock = [
     '/IMV012/18.jpeg',
     ],
     imovel: "Galpão, Guaianases",
-    descricao: "Galpão conta com 1400m²",
+    descricao: "Galpão com 1.400 m² localizado em Guaianases, São Paulo. Estrutura ampla, ideal para operações logísticas e industriais. Fácil acesso às principais rodovias da região. Conta com áreas para carga e descarga, estacionamento e infraestrutura adequada para atender diversas necessidades empresariais.",
     cidade: "São Paulo",
     bairro: "Guaianases",
     preco: 'R$ 60.000 / mês'
@@ -398,7 +398,7 @@ const imoveisMock = [
     '/IMV013/9.jpeg',
     ],
     imovel: "Galpão, São Caetano do Sul",
-    descricao: "Galpão conta com 900m²",
+    descricao: "Galpão conta com 900m² e está localizado em São Caetano do Sul, ideal para empresas que buscam um espaço funcional e bem localizado. Estrutura completa com áreas para carga e descarga, estacionamento e fácil acesso às principais vias da região.",
     cidade: "São Caetano do Sul",
     bairro: "Santa Paula",
     preco: 'R$ 45.000 / mês'
@@ -418,7 +418,7 @@ const imoveisMock = [
     '/IMV014/9.jpeg',
     ],
     imovel: "Galpão, Vila das Belezas",
-    descricao: "Galpão conta com 1500m²",
+    descricao: "Galpão conta com 1500m² e está localizado em São Paulo, ideal para empresas que buscam um espaço funcional e bem localizado. Estrutura completa com áreas para carga e descarga, estacionamento e fácil acesso às principais vias da região.",
     cidade: "São Paulo",
     bairro: "Vila das Belezas",
     preco: 'R$ 65.000 / mês'
@@ -440,7 +440,7 @@ const imoveisMock = [
     '/IMV015/11.jpeg',
     ],
     imovel: "Galpão, Centro Juiz de Fora/MG",
-    descricao: "Galpão conta com 2000m²",
+    descricao: "Galpão conta com 2000m² e está localizado em Juiz de Fora/MG, ideal para empresas que buscam um espaço funcional e bem localizado. Estrutura completa com áreas para carga e descarga, estacionamento e fácil acesso às principais vias da região.",
     cidade: "Juiz de Fora",
     bairro: "Centro",
     preco: 'R$ 50.000 / mês'
@@ -472,7 +472,7 @@ const imoveisMock = [
     '/IMV016/20.jpeg',
     ],
     imovel: "Galpão, Centro Juiz de Fora/MG",
-    descricao: "Galpão conta com 1000m²",
+    descricao: "Galpão conta com 1000m² e está localizado em Campo Mourão, ideal para empresas que buscam um espaço funcional e bem localizado. Estrutura completa com áreas para carga e descarga, estacionamento e fácil acesso às principais vias da região.",
     cidade: "Campo Mourão",
     bairro: "Centro",
     preco: 'R$ 28.000 / mês'
@@ -494,7 +494,7 @@ const imoveisMock = [
     '/IMV017/10.jpeg',
     ],
     imovel: "Galpão, São José dos Campos",
-    descricao: "Galpão conta com 1250m²",
+    descricao: "Galpão conta com 1250m² e está localizado em São José dos Campos, ideal para empresas que buscam um espaço funcional e bem localizado. Estrutura completa com áreas para carga e descarga, estacionamento e fácil acesso às principais vias da região.",
     cidade: "São José dos Campos",
     bairro: "Jardim do Mar",
     preco: 'R$ 28.000 / mês'
@@ -516,7 +516,7 @@ const imoveisMock = [
     '/IMV018/10.jpeg',
     ],
     imovel: "Galpão, Taquara",
-    descricao: "Galpão conta com 1250m²",
+    descricao: "Galpão conta com 1250m² e está localizado em Taquara, Rio de Janeiro, ideal para empresas que buscam um espaço funcional e bem localizado. Estrutura completa com áreas para carga e descarga, estacionamento e fácil acesso às principais vias da região.",
     cidade: "Rio de Janeiro",
     bairro: " Taquara",
     preco: 'R$ 45.000 / mês'
@@ -545,7 +545,7 @@ const imoveisMock = [
     '/IMV019/17.jpeg',
     ],
     imovel: "Galpão, Ramos",
-    descricao: "Galpão conta com 2000m²",
+    descricao: "Galpão conta com 2000m² e está localizado em Ramos, Rio de Janeiro, ideal para empresas que buscam um espaço funcional e bem localizado. Estrutura completa com áreas para carga e descarga, estacionamento e fácil acesso às principais vias da região.",
     cidade: "Rio de Janeiro",
     bairro: " Ramos",
     preco: 'R$ 45.000 / mês'
@@ -611,7 +611,7 @@ const imoveisMock = [
     '/IMV020/54.jpeg',
     ],
     imovel: "Galpão, Vila Esperança",
-    descricao: "Galpão conta com 1700m²",
+    descricao: "Galpão conta com 1700m² e está localizado em São Paulo, ideal para empresas que buscam um espaço funcional e bem localizado. Estrutura completa com áreas para carga e descarga, estacionamento e fácil acesso às principais vias da região.",
     cidade: "São Paulo",
     bairro: "Vila Esperança",
     preco: 'R$ 55.000 / mês'
@@ -640,7 +640,7 @@ const imoveisMock = [
     '/IMV021/17.jpeg',
     ],
     imovel: "Galpão, Vila Esperança",
-    descricao: "Galpão conta com 3000²",
+    descricao: "Galpão conta com 3000² e está localizado em São Paulo, ideal para empresas que buscam um espaço funcional e bem localizado. Estrutura completa com áreas para carga e descarga, estacionamento e fácil acesso às principais vias da região.",
     cidade: "São Paulo",
     bairro: "Vila Caravela",
     preco: 'R$ 150.000 / mês'
@@ -690,7 +690,7 @@ const imoveisMock = [
     '/IMV022/38.jpeg',
     ],
     imovel: "Galpão, Vila Esperança",
-      descricao: "Galpão conta com 1750m² e 40 vagas",
+      descricao: "Galpão conta com 1750m² e 40 vagas de estacionamento, localizado em São Paulo, ideal para empresas que buscam um espaço funcional e bem localizado. Estrutura completa com áreas para carga e descarga, estacionamento e fácil acesso às principais vias da região.",
     cidade: "São Paulo",
     bairro: "Vila Esperança",
     preco: 'R$ 160.000 / mês'
@@ -734,7 +734,7 @@ const imoveisMock = [
     '/IMV023/32.jpg',
     ],
     imovel: "Imóvel Comercial, Centro Itu",
-    descricao: "Sobrado Comercial - AC 447,05 m² e AT 840,93 m²",
+    descricao: "Sobrado Comercial - AC 447,05 m² e AT 840,93 m², localizado em Itu, ideal para empresas que buscam um espaço funcional e bem localizado. Estrutura completa com áreas para carga e descarga, estacionamento e fácil acesso às principais vias da região.",
     cidade: "Itu",
     bairro: "Centro",
     preco: 'R$ 15.000 / mês'
@@ -763,7 +763,7 @@ const imoveisMock = [
     '/IMV024/17.jpeg',
     ],
     imovel: "Imóvel Comercial, Liberdade - Itu",
-    descricao: "Salão com AC 585 m² e área de estacionamento de 950 m². Com proteção acústica nas paredes do salão principal.",
+    descricao: "Salão com AC 585 m² e área de estacionamento de 950 m². Com proteção acústica nas paredes do salão principal. Ideal para empresas que buscam um espaço funcional e bem localizado. Estrutura completa com áreas para carga e descarga, estacionamento e fácil acesso às principais vias da região.",
     cidade: "Itu",
     bairro: "Liberdade",
     preco: 'R$ 15.000 / mês'
@@ -792,7 +792,7 @@ const imoveisMock = [
     '/IMV024/17.jpeg',
     ],
     imovel: "Imóvel Comercial, Liberdade - Itu",
-    descricao: "Salão com AC 585 m² e área de estacionamento de 950 m². Com proteção acústica nas paredes do salão principal.",
+    descricao: "Salão com AC 585 m² e área de estacionamento de 950 m². Com proteção acústica nas paredes do salão principal. Ideal para empresas que buscam um espaço funcional e bem localizado. Estrutura completa com áreas para carga e descarga, estacionamento e fácil acesso às principais vias da região.",
     cidade: "Itu",
     bairro: "Liberdade",
     preco: 'R$ 15.000 / mês'
@@ -830,7 +830,7 @@ const imoveisMock = [
     '/IMV025/26.jpeg',
     ],
     imovel: "Imóvel Comercial, Jardim Europa I",
-    descricao: "Salão com 1000m² de área util. E 800m² de estacionamento.",
+    descricao: "Salão com 1000m² de área util. E 800m² de estacionamento. Ideal para empresas que buscam um espaço funcional e bem localizado. Estrutura completa com áreas para carga e descarga, estacionamento e fácil acesso às principais vias da região.",
     cidade: "Avaré",
     bairro: "Jardim Europa I",
     preco: 'R$ 25.000 / mês'
@@ -877,7 +877,7 @@ const imoveisMock = [
     '/IMV026/35.jpg',
     ],
     imovel: "Imóvel Comercial, Butantã ",
-    descricao: "Salão com 1000m² de área util. E 2 estacionamentos.",
+    descricao: "Salão com 1000m² de área util. E 2 estacionamentos. Ideal para empresas que buscam um espaço funcional e bem localizado. Estrutura completa com áreas para carga e descarga, estacionamento e fácil acesso às principais vias da região.",
     cidade: "São Paulo",
     bairro: "Butantã",
     preco: 'R$ 48.000 / mês'
@@ -945,16 +945,6 @@ export function ImovelDetalhe() {
               <h2>Descrição</h2>
               <p>{imovel.descricao}</p>
             </Detalhes>
-
-            <Facilidades>
-              <h2>Facilidades</h2>
-              <ul>
-                <li>Estacionamento</li>
-                <li>Boa Circulação</li>
-                <li>Área para carga e descarga</li>
-                <li>Pé direito alto</li>
-              </ul>
-            </Facilidades>
           </>
         ) : (
           <p style={{ color: 'red' }}>

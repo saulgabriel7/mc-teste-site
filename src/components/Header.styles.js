@@ -182,13 +182,20 @@ export const MenuCompleto = styled.div`
     font-size: 0.9rem;
     color: #ccc;
 
-    p {
-      margin: 0.25rem 0;
+    img {
+      width: 20px;
+      margin-right: 0.5rem;
+    }
 
-      img {
-        width: 16px;
-        margin-right: 0.5rem;
-      }
+    a {
+      margin: 0.35rem 0;
+      display: flex;
+      align-items: center;
+    }
+    p {
+      margin: 0.35rem 0;
+      display: flex;
+      align-items: center;
     }
   }
 

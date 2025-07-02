@@ -29,6 +29,7 @@ export const imoveisMock = [
     {
     id: 1,
     codigo: 'IMV001',
+    tipo: 'locacao',
     imagem: imv1,
     imovel: 'Galpão, 1566 m² - Vila Cardoso - Capivari/SP',
     descricao: 'Ótimo galpão comercial, com 1566 m² de área construída, excelente para supermercado ou agencia de carros.',
@@ -39,6 +40,7 @@ export const imoveisMock = [
     {
       id: 2,
       codigo: 'IMV002',
+      tipo: 'locacao',  
       imagem: imv2,
       imovel: 'Galpão, 949 m² - Bela Vista/SP',
       descricao: '- Área total de 949 m², bom fluxo de pedestres e veiculos',
@@ -49,6 +51,7 @@ export const imoveisMock = [
     {
       id: 3,
       codigo: 'IMV003',
+      tipo: 'locacao',  
       imagem: imv3,
       imovel: "Galpão, Ubatuba/SP",
       descricao: "Galpão commais de 1000m²",
@@ -59,6 +62,7 @@ export const imoveisMock = [
     {
       id: 4,
       codigo: 'IMV004',
+      tipo: 'locacao',  
       imagem: imv4,
       imovel: "Galpão, Vila Nova Cachoeirinha 1350m²",
       descricao: "Vila Nova Cachoeirinha 1350m²",
@@ -69,6 +73,7 @@ export const imoveisMock = [
     {
       id: 5,
       codigo: 'IMV005',
+      tipo: 'locacao',  
       imagem: imv5,
       imovel: "Galpão, São José dos Campos",
       descricao: "Galpão conta com 1596m²",
@@ -79,6 +84,7 @@ export const imoveisMock = [
     {
       id: 6,
       codigo: 'IMV006',
+      tipo: 'locacao',  
       imagem: imv6,
       imovel: "Galpão, Centro São José dos Campos",
       descricao: "Galpão conta com 1400m²",
@@ -89,6 +95,7 @@ export const imoveisMock = [
     {
       id: 7,
       codigo: 'IMV007',
+      tipo: 'locacao',  
       imagem: imv7,
       imovel: "Galpão, Vila Guilherme",
       descricao: "Galpão conta com 1226m² com 2 Pavimentos",
@@ -99,6 +106,7 @@ export const imoveisMock = [
     {
       id: 8,
       codigo: 'IMV008',
+      tipo: 'locacao',  
       imagem: imv8,
       imovel: "Galpão, Valinhos",
       descricao: "Galpão conta com 1000m²",
@@ -109,6 +117,7 @@ export const imoveisMock = [
     {
       id: 9,
       codigo: 'IMV009',
+      tipo: 'locacao',
       imagem: imv9,
       imovel: "Galpão, Vila Jacuí",
       descricao: "Galpão conta com 900m²",
@@ -119,6 +128,7 @@ export const imoveisMock = [
     {
       id: 10,
       codigo: 'IMV010',
+      tipo: 'locacao',
       imagem: imv10,
       imovel: "Galpão, Ribeirão Pires",
       descricao: "Galpão conta com 900m²",
@@ -129,6 +139,7 @@ export const imoveisMock = [
     {
       id: 11,
       codigo: 'IMV011',
+      tipo: 'locacao',
       imagem: imv11,
       imovel: "Galpão, Saúde",
       descricao: "Galpão conta com 1485m²",
@@ -139,6 +150,7 @@ export const imoveisMock = [
     {
       id: 12,
       codigo: 'IMV012',
+      tipo: 'locacao',
       imagem: imv12,
       imovel: "Galpão, Guaianases",
       descricao: "Galpão conta com 1400m²",
@@ -149,6 +161,7 @@ export const imoveisMock = [
     {
       id: 13,
       codigo: 'IMV013',
+      tipo: 'locacao',
       imagem: imv13,
       imovel: "Galpão, São Caetano do Sul",
       descricao: "Galpão conta com 900m²",
@@ -159,6 +172,7 @@ export const imoveisMock = [
     {
       id: 14,
       codigo: 'IMV014',
+      tipo: 'locacao',
       imagem: imv14,
       imovel: "Galpão, Vila das Belezas",
       descricao: "Galpão conta com 1500m²",
@@ -169,6 +183,7 @@ export const imoveisMock = [
     {
       id: 15,
       codigo: 'IMV015',
+      tipo: 'locacao',
       imagem: imv15,
       imovel: "Galpão, Centro Juiz de Fora/MG",
       descricao: "Galpão conta com 2000m²",
@@ -179,6 +194,7 @@ export const imoveisMock = [
     {
       id: 16,
       codigo: 'IMV016',
+      tipo: 'locacao',
       imagem: imv16,
       imovel: "Galpão, Centro Juiz de Fora/MG",
       descricao: "Galpão conta com 1000m²",
@@ -189,6 +205,7 @@ export const imoveisMock = [
     {
       id: 17,
       codigo: 'IMV017',
+      tipo: 'locacao',
       imagem: imv17,
       imovel: "Galpão, São José dos Campos",
       descricao: "Galpão conta com 1250m²",
@@ -199,6 +216,7 @@ export const imoveisMock = [
     {
       id: 18,
       codigo: 'IMV018',
+      tipo: 'locacao',
       imagem: imv18,
       imovel: "Galpão, Taquara",
       descricao: "Galpão conta com 1250m²",
@@ -209,6 +227,7 @@ export const imoveisMock = [
     {
       id: 19,
       codigo: 'IMV019',
+      tipo: 'locacao',
       imagem: imv19,
       imovel: "Galpão, Ramos",
       descricao: "Galpão conta com 2000m²",
@@ -219,6 +238,7 @@ export const imoveisMock = [
     {
       id: 20,
       codigo: 'IMV020',
+      tipo: 'locacao',
       imagem: imv20,
       imovel: "Galpão, Vila Esperança",
       descricao: "Galpão conta com 1700m²",
@@ -229,6 +249,7 @@ export const imoveisMock = [
         {
       id: 21,
       codigo: 'IMV021',
+      tipo: 'locacao',
       imagem: imv21,
       imovel: "Galpão, Vila Esperança",
       descricao: "Galpão conta com 3000²",
@@ -239,6 +260,7 @@ export const imoveisMock = [
     {
       id: 22,
       codigo: 'IMV022',
+      tipo: 'locacao',
       imagem: imv22,
       imovel: "Galpão, Vila Esperança",
       descricao: "Galpão conta com 1750m² e 40 vagas",
@@ -249,6 +271,7 @@ export const imoveisMock = [
     {
       id: 23,
       codigo: 'IMV023',
+      tipo: 'locacao',
       imagem: imv23,
       imovel: "Imóvel Comercial, Centro - Itu",
       descricao: "Sobrado Comercial - AC 447,05 m² e AT 840,93 m²",
@@ -259,6 +282,7 @@ export const imoveisMock = [
     {
       id: 24,
       codigo: 'IMV024',
+      tipo: 'locacao',
       imagem: imv24,
       imovel: "Imóvel Comercial, Liberdade - Itu",
       descricao: "Salão com AC 585 m² e área de estacionamento de 950 m². Com proteção acústica nas paredes do salão principal.",
@@ -269,6 +293,7 @@ export const imoveisMock = [
     {
       id: 25,
       codigo: 'IMV025',
+      tipo: 'locacao',
       imagem: imv25,
       imovel: "Imóvel Comercial, Jardim Europa I",
       descricao: "Salão com 1000m² de área util. E 800m² de estacionamento.",
@@ -279,6 +304,7 @@ export const imoveisMock = [
     {
       id: 26,
       codigo: 'IMV026',
+      tipo: 'locacao',
       imagem: imv26,
       imovel: "Imóvel Comercial, Butantã ",
       descricao: "Salão com 1000m² de área util. E 2 estacionamentos.",

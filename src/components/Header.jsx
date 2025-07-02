@@ -10,7 +10,6 @@ import {
 import capa from '../assets/capa.svg';
 import logo from '../assets/logo.svg';
 import whats from '../assets/whatsapp.svg';
-import telefone from '../assets/telefone.svg';
 
 export function Header() {
   const navigate = useNavigate();
@@ -46,12 +45,8 @@ export function Header() {
         <div className="contato-menu">
           <div className="right">
             <span>
-              <img src={telefone} alt="telefone" />
-              (11) 9876-54321
-            </span>
-            <span>
               <img src={whats} alt="whatsapp logo" />
-              (11) 9876-54321
+              <a href="https://wa.me/5511947708668?text=Oi,%20vim%20pelo%20site%2C%20poderia%20me%20ajudar%3F" target='_blank'> (11) 94770-8668</a>
             </span>
           </div>
           <div className="hamburguer" onClick={() => setMenuAberto(true)}>☰</div>
@@ -72,30 +67,28 @@ export function Header() {
 
             <section>
               <h4>Para Proprietários</h4>
-              <a href="#">Anuncie seu imóvel</a>
+              <Link href="/indique-seu-imovel" onClick={(e) => handleNavigation(e, '/indique-seu-imovel')}>Indique seu imóvel</Link>
+              <a href="https://wa.me/5511947708668?text=Olá,%20gostaria%20de%20anunciar%20meu%20imóvel%20no%20site.%20Pode%20me%20ajudar%3F" target='_blank'>Fale com o corretor</a>
             </section>
 
             <section>
               <h4>Sobre Nós</h4>
-              <a href="#">Nossos Corretores</a>
               <Link to="/sobre">Conheça a MC Imóveis</Link>
             </section>
 
             <section>
               <h4>Nossos Serviços</h4>
-              <a href="#">Gestão de Imóveis</a>
-              <a href="/imoveis" onClick={(e) => handleNavigation(e, '/imoveis')}>Encontre o imóvel ideal para você</a>
+              <Link href="/imoveis" onClick={(e) => handleNavigation(e, '/imoveis')}>Encontre o imóvel ideal para você</Link>
             </section>
 
             <section>
               <h4>Entre em Contato</h4>
-              <a href="#">Fale com nossa equipe</a>
+              <a href="https://wa.me/5511947708668?text=Oi,%20vim%20pelo%20site%2C%20poderia%20me%20ajudar%3F" target='_blank'>Fale com nossa equipe</a>
             </section>
           </div>
 
           <div className="contato">
-            <p><img src={telefone} alt="tel" />(11) 1111-1111 (Telefone)</p>
-            <p><img src={whats} alt="whatsapp" />(11) 98765-4321 (WhatsApp)</p>
+            <a href="https://wa.me/5511947708668?text=Oi,%20vim%20pelo%20site%2C%20poderia%20me%20ajudar%3F" target='_blank'><img src={whats} alt="whatsapp" />(11) 94770-8668 (WhatsApp)</a>
             <p>MC Imóveis</p>
           </div>
         </div>
