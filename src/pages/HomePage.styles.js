@@ -82,6 +82,7 @@ export const MainContainer = styled.div`
 .Destaques h2 {
   font-size: 42px;
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .btn {

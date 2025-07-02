@@ -9,7 +9,7 @@ export const Card = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  max-width: 300px;
+  max-width: 320px;
   min-width: 260px;
   transition: transform 0.2s ease-in-out;
   flex-shrink: 0;
