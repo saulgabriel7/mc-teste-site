@@ -39,11 +39,11 @@ export function Header() {
                     <a href="/" onClick={(e) => handleNavigation(e, '/')}>Home</a>
                   </section>
       
-                  <section>
-                    <h4>Para Proprietários</h4>
-                    <Link href="/indique-seu-imovel" onClick={(e) => handleNavigation(e, '/indique-seu-imovel')}>Indique seu imóvel</Link>
-                    <a href="https://wa.me/5511947708668?text=Olá,%20gostaria%20de%20anunciar%20meu%20imóvel%20no%20site.%20Pode%20me%20ajudar%3F" target='_blank'>Fale com o corretor</a>
-                  </section>
+                <section>
+                  <h4>Para Proprietários</h4>
+                  <a href="/indique-seu-imovel" onClick={(e) => handleNavigation(e, '/indique-seu-imovel')}>Indique seu imóvel</a>
+                  <a href="https://wa.me/5511947708668?text=Olá,%20gostaria%20de%20anunciar%20meu%20imóvel%20no%20site.%20Pode%20me%20ajudar%3F" target='_blank'>Fale com o corretor</a>
+                </section>
       
                   <section>
                     <h4>Sobre Nós</h4>
