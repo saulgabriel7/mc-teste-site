@@ -5,7 +5,7 @@ export const StyledFooterContainer = styled.footer`
   color: white;
   padding: 3rem 2rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   align-items: center;
 
   .footer-logo {
@@ -65,10 +65,6 @@ export const StyledFooterContainer = styled.footer`
 
     .footer-grid {
       text-align: center;
-    }
-
-    .footer-column {
-      align-items: center;
     }
   }
 `;
