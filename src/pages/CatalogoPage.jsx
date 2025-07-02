@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import styled from 'styled-components';
 import { Header } from '../components/HeaderImoveis';
 import { Footer } from '../components/Footer';
 import { CardImovel } from '../components/CardImovel';
-import styled from 'styled-components';
 import { imoveisMock } from '../data/imoveisMock';
 import { Loader } from '../components/Loader';
 
@@ -33,42 +33,36 @@ export function CatalogoPage() {
   const [cidade, setCidade] = useState('');
   const [tipo, setTipo] = useState('');
   const [precoMax, setPrecoMax] = useState('');
-
-  // 👇 Inicializa com os filtros da URL ao carregar
-  useEffect(() => {
-    const cidadeURL = searchParams.get('cidade') || '';
-    const tipoURL = searchParams.get('tipo') || '';
-    const precoURL = searchParams.get('preco') || '';
-
-    setCidade(cidadeURL);
-    setTipo(tipoURL);
-    setPrecoMax(precoURL);
-  }, [searchParams]);
-
-  const filtrarImoveis = () => {
-    return imoveisMock.filter((item) => {
-      const passaCidade = cidade ? item.cidade === cidade : true;
-      const passaTipo = tipo ? item.tipo === tipo : true;
-      const passaPreco = precoMax ? +item.preco.replace(/\D/g, '') <= +precoMax : true;
-      return passaCidade && passaTipo && passaPreco;
-    });
-  };
-
-  const cidadesUnicas = [...new Set(imoveisMock.map(i => i.cidade))];
-
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setCidade(searchParams.get('cidade') || '');
+    setTipo(searchParams.get('tipo') || '');
+    setPrecoMax(searchParams.get('preco') || '');
+  }, [searchParams]);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);
     return () => clearTimeout(timer);
   }, []);
-  
+
+  const filtrarImoveis = () => {
+    return imoveisMock.filter((item) => {
+      const passaCidade = cidade ? item.cidade === cidade : true;
+      const passaTipo = tipo ? item.tipo === tipo : true;
+      const preco = +item.preco.replace(/\D/g, '');
+      const passaPreco = precoMax ? preco <= +precoMax : true;
+      return passaCidade && passaTipo && passaPreco;
+    });
+  };
+
+  const cidadesUnicas = [...new Set(imoveisMock.map((i) => i.cidade))];
+
   if (loading) return <Loader />;
 
   return (
     <>
       <Header />
-
       <h1 style={{ padding: '2rem' }}>Todos os Imóveis</h1>
 
       <FiltrosContainer>
