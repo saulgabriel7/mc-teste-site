@@ -77,7 +77,7 @@ export function PoliticaPrivacidadePage() {
 
         <SectionTitle>8. Contato</SectionTitle>
         <Paragraph>
-          Caso tenha dúvidas sobre nossa política de privacidade, entre em contato conosco pelo e-mail mc.imoveis11.
+          Caso tenha dúvidas sobre nossa política de privacidade, entre em contato conosco pelo e-mail mc.imoveis11@gmail.com
         </Paragraph>
 
         <Paragraph>
