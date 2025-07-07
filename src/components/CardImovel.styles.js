@@ -91,10 +91,6 @@ export const BotaoC = styled.button`
   }
 `;
 
-// Estilo externo para lista de cards (ideal importar no container da Home)
-
-
-
 export const CardsLista = styled.div`
   display: ${({ destaque }) => (destaque ? 'flex' : 'grid')};
   flex-direction: row;
@@ -135,7 +131,7 @@ export const ScrollButton = styled.button`
   }
 
   @media (max-width: 768px) {
-    font-size: 1.5rem; // Tamanho menor para dispositivos móveis
+    font-size: 1.5rem;
   }
 `;
 

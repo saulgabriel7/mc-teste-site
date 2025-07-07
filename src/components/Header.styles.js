@@ -116,6 +116,8 @@ export const MenuCompleto = styled.div`
   color: white;
   font-family: sans-serif;
   transition: opacity 0.4s ease, transform 0.3s ease;
+  flex-direction: row;
+  flex-wrap: nowrap;
 
   opacity: ${({ open }) => (open ? 1 : 0)};
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
