@@ -6,21 +6,15 @@ import { Footer } from '../components/Footer';
 import { Loader } from '../components/Loader';
 
 const Wrapper = styled.div`
-  font-family: 'Inter';
-  background: var(--background-color);
-  color: var(--text-color);
-
-  h1 {
+h1 {
     text-align: center;
     font-size: 3.125rem;
-    font-weight: 900;
-    margin-bottom: 1rem;
+    color: var(--primary-color);
   }
   h2 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #222;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.5rem;    margin-bottom: 1rem;
   }
   p {
     font-size: 1rem;
@@ -60,14 +54,14 @@ const Card = styled.div`
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 
   h3 {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     margin-bottom: 0.5rem;
     color: ${(props) => (props.highlight ? '#fff' : 'var(--text-color)')};
   }
 
   p {
     color: ${(props) => (props.highlight ? '#fff' : 'var(--text-color)')};
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 `;
 
