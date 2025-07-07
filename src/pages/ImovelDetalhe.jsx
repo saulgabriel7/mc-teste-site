@@ -5,6 +5,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Header } from '../components/HeaderImoveis';
 import { Footer } from '../components/Footer';
 import { Loader } from '../components/Loader';
+import { BotaoCompartilharWhatsApp } from '../components/share';
 
 import {
   Container,
@@ -936,8 +937,8 @@ export function ImovelDetalhe() {
               </InfoRow>
               <PriceHighlight>{imovel.preco}</PriceHighlight>
               <CTAButtons>
-                <button className="primary">Agendar Visita</button>
-                <button className="secondary">Compartilhar</button>
+                <button className="primary"><a target='_blank' onclick="compartilharWhatsApp()" href={`https://wa.me/5511947708668?text=Olá,%20gostaria%20de%20agendar%20uma%20visita%20ao%20imóvel%20${imovel.imovel}%20(${imovel.codigo})`}>Agendar Visita</a></button>
+                <BotaoCompartilharWhatsApp />
               </CTAButtons>
             </Info>
 

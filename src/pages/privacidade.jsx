@@ -67,7 +67,7 @@ export function PoliticaPrivacidadePage() {
 
         <SectionTitle>6. Seus direitos</SectionTitle>
         <Paragraph>
-          Você tem direito de acessar, corrigir, solicitar a exclusão ou portabilidade dos seus dados. Para isso, entre em contato conosco pelo e-mail ou telefone informados no formulário.
+          Você tem direito de acessar, corrigir, solicitar a exclusão ou portabilidade dos seus dados. Para isso, entre em contato conosco pelo e-mail ou telefone informados no site.
         </Paragraph>
 
         <SectionTitle>7. Consentimento</SectionTitle>
