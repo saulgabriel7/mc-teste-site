@@ -1,22 +1,23 @@
-// Importando styled-components para criar componentes com estilo
 import styled from 'styled-components';
 
-// Estilo do container principal do header
 export const ContainerHeader = styled.header`
-    background-color: var(--primary-color);
-  height: auto;
+  background-color: var(--primary-color);
   color: white;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 `;
 
 export const Navegacao = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
-  padding: 1.6rem;
+  padding: 1rem 2rem;
 
   img {
-    width: 56px; 
+    width: 64px;
+    height: auto;
   }
 
   .contato-menu {
@@ -28,16 +29,23 @@ export const Navegacao = styled.nav`
   .right {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.25rem;
 
     span {
       display: flex;
       align-items: center;
-      font-size: 1.25rem;
+      font-size: 1rem;
+      color: white;
       gap: 0.5rem;
 
       img {
-        width: 24px;
+        width: 20px;
+      }
+
+      a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
       }
     }
   }
@@ -49,21 +57,22 @@ export const Navegacao = styled.nav`
 
   @media (max-width: 768px) {
     .right {
-      display: none; /* esconde contatos no mobile */
+      display: none;
     }
   }
 `;
-
 
 export const MenuCompleto = styled.div`
   position: fixed;
   inset: 0;
   display: flex;
   z-index: 100;
-  background-color: var(--primary-color);
+  background-color: var(--accent-color);
   color: white;
   font-family: sans-serif;
   transition: opacity 0.4s ease, transform 0.3s ease;
+  flex-direction: row;
+  flex-wrap: nowrap;
 
   opacity: ${({ open }) => (open ? 1 : 0)};
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
@@ -108,7 +117,7 @@ export const MenuCompleto = styled.div`
     section {
       h4 {
         font-weight: 400;
-        color: var(--dark-text-color);
+        color: var(--subtext-color);
         margin-bottom: 0.5rem;
       }
 
@@ -118,10 +127,6 @@ export const MenuCompleto = styled.div`
         text-decoration: none;
         font-size: 1.1rem;
         margin-bottom: 0.25rem;
-
-        &:hover {
-          color:var(--span-color)
-        }
       }
     }
   }
@@ -168,11 +173,3 @@ export const MenuCompleto = styled.div`
     }
   }
 `;
-
-
-
-
-
-
-
-

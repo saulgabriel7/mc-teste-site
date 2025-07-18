@@ -1,3 +1,5 @@
+// CatalogoPage.tsx
+
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
@@ -7,69 +9,75 @@ import { CardImovel } from '../components/CardImovel';
 import { imoveisMock } from '../data/imoveisMock';
 import { Loader } from '../components/Loader';
 
+const PageContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+`;
+
+const Titulo = styled.div`
+  padding: 2rem 1rem;
+  text-align: center;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 560px) {
+    h1 {
+      font-size: 2rem;
+    }
+  }
+`;
+
 const FiltrosContainer = styled.div`
-  padding: 1rem;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  background: #f9f9f9;
+  padding: 2rem 1rem;
   justify-content: center;
+  background-color: var(--background-color);
 
   select, input {
-    padding: 0.7rem 1rem;
+    padding: 0.75rem 1rem;
     font-size: 1rem;
-    border-radius: 12px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
     background-color: white;
-    transition: all 0.3s ease;
-    max-width: 300px;
-    flex: 1;
+    color: var(--text-color);
+    transition: border 0.2s ease;
   }
 
   select:focus, input:focus {
     outline: none;
-    border-color: var(--span-color);
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+    border-color: var(--accent-color);
   }
 
   button {
-    padding: 0.7rem 1.5rem;
+    padding: 0.75rem 1.5rem;
     font-size: 1rem;
-    border-radius: 12px;
-    border: none;
-    background-color:var(--span-color);
+    border-radius: 8px;
+    background-color: var(--accent-color);
     color: white;
+    border: none;
     cursor: pointer;
-    transition: background 0.3s ease;
-    flex-shrink: 0;
+    transition: background-color 0.2s ease;
   }
 
   button:hover {
-    background-color: var(--span-color-hover);
+    background-color: var(--accent-hover);
   }
 
   @media (max-width: 560px) {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
 
     select, input, button {
+      max-width: 100%;
       width: 100%;
-      max-width: 300px;
-    }
-  }
-`;
-const Titulo = styled.div`
-  padding: 2rem;
-  text-align: center;
-  h1 {
-    font-size: 3.125rem;
-    color: var(--primary-color);
-    font-weight: bold;        
-  }
-  @media (max-width: 560px) {
-    padding: 1rem;
-    h1 {
-      font-size: 2rem;
     }
   }
 `;
@@ -77,23 +85,19 @@ const Titulo = styled.div`
 const GridImoveis = styled.div`
   display: grid;
   gap: 2rem;
-  padding: 2rem;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  justify-items: center;
-`;
+  padding: 2rem 1rem;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  background-color: var(--background-color);
 
-const PageContainer = styled.div`
-@media (max-width: 560px) {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    justify-items: center;
   }
+
+
 `;
-
-
 
 export function CatalogoPage() {
   const [searchParams] = useSearchParams();
@@ -114,6 +118,10 @@ export function CatalogoPage() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    document.title = 'Imóveis - MC Acessoria Imobiliária';
+  }, []);
+
   const filtrarImoveis = () => {
     return imoveisMock.filter((item) => {
       const passaCidade = cidade ? item.cidade === cidade : true;
@@ -132,50 +140,48 @@ export function CatalogoPage() {
     <>
       <Header />
       <PageContainer>
-
-      <Titulo>
+        <Titulo>
           <h1>Todos os Imóveis</h1>
-      </Titulo>
- 
+        </Titulo>
 
-      <FiltrosContainer>
-        <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
-          <option value="">Todos os Tipos</option>
-          <option value="venda">Venda</option>
-          <option value="locacao">Locação</option>
-        </select>
+        <FiltrosContainer>
+          <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
+            <option value="">Todos os Tipos</option>
+            <option value="venda">Venda</option>
+            <option value="locacao">Locação</option>
+          </select>
 
-        <select value={cidade} onChange={(e) => setCidade(e.target.value)}>
-          <option value="">Todas as Cidades</option>
-          {cidadesUnicas.map((c) => (
-            <option key={c} value={c}>{c}</option>
+          <select value={cidade} onChange={(e) => setCidade(e.target.value)}>
+            <option value="">Todas as Cidades</option>
+            {cidadesUnicas.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+
+          <input
+            type="number"
+            placeholder="Preço Máximo (R$)"
+            value={precoMax}
+            onChange={(e) => setPrecoMax(e.target.value)}
+            min={0}
+            step={10}
+          />
+
+          <button onClick={() => {
+            setCidade('');
+            setTipo('');
+            setPrecoMax('');
+          }}>
+            Limpar Filtros
+          </button>
+        </FiltrosContainer>
+
+        <GridImoveis>
+          {filtrarImoveis().map((item) => (
+            <CardImovel key={item.id} item={item} />
           ))}
-        </select>
-
-        <input
-          type="number"
-          placeholder="Preço Máximo (R$)"
-          value={precoMax}
-          onChange={(e) => setPrecoMax(e.target.value)}
-          min={0}
-          max={10000}
-          step={10}
-        />
-        <button onClick={() => {
-                  setCidade('');
-                  setTipo('');
-                  setPrecoMax('');
-                }}>Limpar Filtros</button>      
-              </FiltrosContainer>
-
-      <GridImoveis>
-        {filtrarImoveis().map((item) => (
-          <CardImovel key={item.id} item={item} />
-        ))}
-      </GridImoveis>
-
+        </GridImoveis>
       </PageContainer>
-
       <Footer />
     </>
   );

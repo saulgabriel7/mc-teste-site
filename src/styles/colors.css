@@ -1,15 +1,18 @@
 :root {
-    --primary-color: #222224;
-    --background-color: #f5f5f5;
-    --text-color: #111;
-    --dark-text-color: #888;
-    --darker-text-color: #444;
-    --span-color: #8BA1B9;
-    --span-color-hover: #748597;
-    --gray: #aaa;
-    --white: rgb(255, 255, 255);
-    --hover-gray:#3e3e3e;
-    --green-color: #28a745;
-    --green-hover-color: #339449;
-    --claro: #eee;
-  }
+  --primary-color: #1D1D1F;
+  --span-color: #8ba1b9;
+  --background-color: #FAFAFA;
+  --hover-gray: #F0F0F0;
+  --text-color: #2D2D2D;
+  --subtext-color: #7D7D7D;
+  --accent-color: #10151d;
+  --accent-hover: #3b3d3f;
+  --card-bg: #FFFFFF;
+  --border-color: #E0E0E0;
+  --button-bg: #4F8EF7;
+  --button-hover: #3C76D2;
+  --green-color: #28a745;
+}
+
+
+  

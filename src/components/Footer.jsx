@@ -1,13 +1,21 @@
 import React from 'react';
 import logo from '../assets/logo-fundo.svg';
-import { StyledFooterContainer } from '../components/Footer.styles.js';
+import { StyledFooterContainer } from '../components/Footer.styles';
+import { useNavigate } from 'react-router-dom';
 
 export function Footer() {
+  const navigate = useNavigate();
+
+  function handleNavigation(e, path) {
+    e.preventDefault();
+    navigate(path);
+  }
+
   return (
     <StyledFooterContainer>
-        <div className="footer-logo">
-            <img src={logo} alt="Logo MC Imobiliária" />
-        </div>
+      <div className="footer-logo">
+        <img src={logo} alt="Logo MC Imobiliária" />
+      </div>
 
       <div className="footer-grid">
         <div className="footer-column">
@@ -31,7 +39,7 @@ export function Footer() {
           <a href="/imoveis" onClick={(e) => handleNavigation(e, '/imoveis')}>Todos os imóveis</a>
           <a href="/sobre" onClick={(e) => handleNavigation(e, '/sobre')}>Quem Somos</a>
           <a href="/indique-seu-imovel" onClick={(e) => handleNavigation(e, '/indique-seu-imovel')}>Indique seu imóvel</a>
-          <a href="https://wa.me/5511947708668?text=Oi,%20vim%20pelo%20site%2C%20poderia%20me%20ajudar%3F" target='_blank'>Contato</a>
+          <a href="https://wa.me/5511947708668?text=Oi,%20vim%20pelo%20site%2C%20poderia%20me%20ajudar%3F" target="_blank" rel="noopener noreferrer">Contato</a>
         </div>
       </div>
 

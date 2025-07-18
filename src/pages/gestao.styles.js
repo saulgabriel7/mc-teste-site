@@ -67,7 +67,7 @@ export const CheckboxContainer = styled.div`
 `;
 
 export const ButtonSubmit = styled.button`
-  background-color: var(--span-color);
+  background-color: var(--accent-color);
   color: white;
   border: none;
   padding: 0.9rem;
@@ -77,7 +77,7 @@ export const ButtonSubmit = styled.button`
   font-weight: bold;
 
   &:hover {
-    background-color: var(--span-color-hover);
+    background-color: var(--accent-hover);
   }
 `;
 

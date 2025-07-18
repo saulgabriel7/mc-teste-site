@@ -24,6 +24,7 @@ export const MainContainer = styled.div`
       justify-content: center;
       align-items: center;
   }
+
   }
 
   .paragrafo h2 {
@@ -31,6 +32,12 @@ export const MainContainer = styled.div`
     line-height: 1.2;
     font-weight: 700;
     max-width: 550px;
+  }
+
+  @media(max-width: 768px) {
+    .paragrafo h2 {
+      font-size: 42px;
+    }
   }
 
   .paragrafo h2 span {
@@ -71,35 +78,54 @@ export const MainContainer = styled.div`
     box-sizing: border-box;
   }
 
-  .Destaques { 
-  padding-block: 4rem;
+.Destaques {
+  padding-block: 3rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .Destaques h2 {
   font-size: 42px;
-  margin-bottom: 1.5rem;
-  text-align: center;
+  font-weight: 700;
+  color: var(--text-color);
 }
 
 .btn {
   display: flex;
-  gap: 1rem;
+  align-items: center;
 }
 
-.btn li{
-  list-style: none;
-  padding: 10px 20px;
-  font-size: 14px;
+.btn button {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 1.2rem;
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 500;
   cursor: pointer;
-  border-radius: 20px;
-  border: 1px solid #aaa;
-  background-color: var(--white);
-  transition: all 0.3s ease;
-  border: 1px solid var(--primary-color);
-  font-weight: bold;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
+
+.btn button:hover {
+  background-color: var(--accent-hover);
+}
+
+.img {
+  filter: invert(1);
+  width: 20px;
+  transition: transform 0.3s ease;
+}
+
+.btn button:hover .img {
+  transform: translateX(4px);
+}
+
 `;

@@ -29,6 +29,10 @@ export function GestaoImoveisPage() {
     return () => clearTimeout(timeout);
   }, []);
 
+  useEffect(() => {
+      document.title = 'Gestão - MC Acessoria Imobiliária';
+    }, []);
+
   const handleCloseModal = () => {
     setModalVisible(false);
   };
@@ -77,7 +81,7 @@ export function GestaoImoveisPage() {
     >
       <div
         style={{
-          background: 'var(--background-color)',
+          background: 'var(--accent-color)',
           padding: 24,
           borderRadius: 8,
           maxWidth: 400,

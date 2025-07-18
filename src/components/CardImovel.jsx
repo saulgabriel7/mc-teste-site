@@ -20,7 +20,7 @@ export function CardImovel({ item }) {
             rel="noopener noreferrer"
           >
             <BotaoC>
-              <img src={arrow} alt='seta' />
+              <img src={arrow} alt="seta" />
             </BotaoC>
           </a>
         </div>

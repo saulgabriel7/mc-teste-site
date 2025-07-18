@@ -10,7 +10,7 @@
     width: 60px;
     height: 60px;
     border: 8px solid #f3f3f3;
-    border-top: 8px solid var(--span-color);
+    border-top: 8px solid var(--accent-color);
     border-radius: 50%;
     animation: spin 1s linear infinite;
   }

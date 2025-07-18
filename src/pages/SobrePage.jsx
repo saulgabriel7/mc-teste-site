@@ -82,6 +82,10 @@ export function SobrePage() {
     return () => clearTimeout(timer);
   }, []);
 
+    useEffect(() => {
+        document.title = 'Sobre Nós - MC Acessoria Imobiliária';
+      }, []);
+
   if (loading) return <Loader />;
 
   return (

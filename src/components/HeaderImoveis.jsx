@@ -8,9 +8,18 @@ export function Header() {
   const navigate = useNavigate();
   const [menuAberto, setMenuAberto] = useState(false);
 
+  const handleNavigation = (e, path) => {
+  e.preventDefault();
+  navigate(path);
+  setMenuAberto(false);
+};
+
+
   return (
     <ContainerHeader>
       <Navegacao>
+      
+
         <div>
           <a href="/" onClick={(e) => handleNavigation(e, '/')}>
             <img src={logo} alt="Logo da MC Imobiliária" />
@@ -54,10 +63,10 @@ export function Header() {
                     <h4>Nossos Serviços</h4>
                     <Link href="/imoveis" onClick={(e) => handleNavigation(e, '/imoveis')}>Encontre o imóvel ideal para você</Link>
                   </section>
-      
+
                   <section>
                     <h4>Entre em Contato</h4>
-                    <Link href="#">Fale com nossa equipe</Link>
+                    <a href="https://wa.me/5511947708668?text=Oi,%20vim%20pelo%20site%2C%20poderia%20me%20ajudar%3F" target='_blank'>Fale com nossa equipe</a>
                   </section>
                 </div>
       

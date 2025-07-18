@@ -4,7 +4,6 @@ export const Container = styled.div`
   padding: 2rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 `;
 
 export const ImagemContainer = styled.div`
@@ -76,7 +75,7 @@ export const Detalhes = styled.div`
   }
 `;
 
-export const PriceHighlight = styled.div`
+export const Price = styled.div`
   margin-top: 1rem;
   font-size: 1.5rem;
   font-weight: bold;
@@ -97,11 +96,11 @@ export const CTAButtons = styled.div`
     transition: background 0.3s;
 
     &.primary {
-      background: var(--primary-color);
+      background: var(--accent-color);
       color: white;
 
       &:hover {
-        background: var(--hover-gray);
+        background: var(--accent-hover);
       }
     }
 
@@ -111,29 +110,6 @@ export const CTAButtons = styled.div`
 
       &:hover {
         background: #ccc;
-      }
-    }
-  }
-`;
-
-export const Facilidades = styled.div`
-  margin: 2rem 0;
-  background: #f7f7f7;
-  padding: 1.5rem;
-  border-radius: 10px;
-
-  ul {
-    list-style: none;
-    padding: 0;
-
-    li {
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
-
-      &::before {
-        content: '✔️';
-        margin-right: 0.5rem;
-        color: var(--green-color);
       }
     }
   }

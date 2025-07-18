@@ -32,13 +32,13 @@ export const ContainerHeader = styled.header`
       padding: 0.6rem 1.2rem;
       border: none;
       border-radius: 10px;
-      background-color: var(--primary-color);
+      background-color: var(--accent-color);
       color: white;
-      font-weight: bold;
+      font-weight: 600;
       cursor: pointer;
 
       &:hover {
-        background-color: var(--hover-gray);
+        background-color: var(--accent-hover);
       }
     }
 
@@ -112,7 +112,7 @@ export const MenuCompleto = styled.div`
   inset: 0;
   display: flex;
   z-index: 100;
-  background-color: var(--primary-color);
+  background-color: var(--accent-color);
   color: white;
   font-family: sans-serif;
   transition: opacity 0.4s ease, transform 0.3s ease;
@@ -162,7 +162,7 @@ export const MenuCompleto = styled.div`
     section {
       h4 {
         font-weight: 400;
-        color: var(--dark-text-color);
+        color: var(--subtext-color);
         margin-bottom: 0.5rem;
       }
 
@@ -172,10 +172,6 @@ export const MenuCompleto = styled.div`
         text-decoration: none;
         font-size: 1.1rem;
         margin-bottom: 0.25rem;
-
-        &:hover {
-          color: var(--span-color);
-        }
       }
     }
   }

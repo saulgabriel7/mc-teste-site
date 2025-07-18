@@ -13,9 +13,8 @@ import {
   Info,
   InfoRow,
   Detalhes,
-  PriceHighlight,
+  Price,
   CTAButtons,
-  Facilidades,
 } from './ImoveisDetalhe.style';
 
 const imoveisMock = [
@@ -935,9 +934,9 @@ export function ImovelDetalhe() {
                 <span><strong>Cidade:</strong> {imovel.cidade}</span>
                 <span><strong>Bairro:</strong> {imovel.bairro}</span>
               </InfoRow>
-              <PriceHighlight>{imovel.preco}</PriceHighlight>
+              <Price>{imovel.preco}</Price>
               <CTAButtons>
-                <button className="primary"><a target='_blank' onclick="compartilharWhatsApp()" href={`https://wa.me/5511947708668?text=Olá,%20gostaria%20de%20agendar%20uma%20visita%20ao%20imóvel%20${imovel.imovel}%20(${imovel.codigo})`}>Agendar Visita</a></button>
+                <button className="primary"><a target='_blank' onClick="compartilharWhatsApp()" href={`https://wa.me/5511947708668?text=Olá,%20gostaria%20de%20agendar%20uma%20visita%20ao%20imóvel%20${imovel.imovel}%20(${imovel.codigo})`}>Agendar Visita</a></button>
                 <BotaoCompartilharWhatsApp />
               </CTAButtons>
             </Info>

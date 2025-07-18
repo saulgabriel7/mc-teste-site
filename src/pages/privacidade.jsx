@@ -22,7 +22,7 @@ const Title = styled.h1`
 const SectionTitle = styled.h2`
   margin-top: 2rem;
   margin-bottom: 1rem;
-  color: var(--span-color);
+  color: var(--accent-color);
 `;
 
 const Paragraph = styled.p`
@@ -30,6 +30,15 @@ const Paragraph = styled.p`
 `;
 
 export function PoliticaPrivacidadePage() {
+  const [loading, setLoading] = React.useState(true);
+  React.useEffect(() => {
+      const timer = setTimeout(() => setLoading(false), 500);
+      return () => clearTimeout(timer);
+    }, []);
+  React.useEffect(() => {
+    document.title = 'Política de Privacidade - MC Acessoria Imobiliária';
+  }, []);
+
   return (
     <>
       <Header />

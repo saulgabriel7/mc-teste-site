@@ -6,6 +6,7 @@ import { CardImovel } from '../components/CardImovel';
 import { Loader } from '../components/Loader';
 import { MainContainer } from './HomePage.styles';
 import { CarrosselContainer, CardsScroller, ScrollButton } from '../components/Carrossel.styles';
+import arrow from '../assets/arrow-right-bold.png';
 
 import img1 from '../assets/1.svg';
 import img2 from '../assets/2.svg';
@@ -98,6 +99,10 @@ export function HomePage() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    document.title = 'MC Acessoria Imobiliária';
+  }, []);
+
   if (loading) return <Loader />;
 
   return (
@@ -106,7 +111,7 @@ export function HomePage() {
       <MainContainer>
         <main>
           <section className='paragrafo'>
-            <h2>Encontre seu imóvel dos sonhos hoje!</h2>
+            <h2>Encontre agora seu imóvel dos sonhos!</h2>
             <p>Descubra o lugar perfeito para viver com conforto e segurança. Temos as melhores opções para tornar seu sonho realidade. Comece sua busca agora! Encontre a casa dos seus sonhos em um ambiente acolhedor e protegido. Oferecemos diversas opções que se encaixam no seu estilo de vida. Não perca tempo, inicie sua jornada para um novo lar hoje mesmo!</p>
           </section>
 
@@ -117,12 +122,15 @@ export function HomePage() {
           </section>
 
           <section className='Destaques'>
-            <h2>Imoveis em Destaque</h2>
+            <h2>Imóveis em Destaque</h2>
             <div className="btn">
-              <li className="dest">Destaques</li>
-              <li onClick={() => navigate('/imoveis')}>Veja Mais</li>
+              <button onClick={() => navigate('/imoveis')}>
+                Veja Mais
+                <img className='img' src={arrow} alt="Ícone de seta" />
+              </button>
             </div>
           </section>
+
 
           <CarrosselContainer>
             <ScrollButton className="left" onClick={() => scroll(-300, scrollRef)}>‹</ScrollButton>

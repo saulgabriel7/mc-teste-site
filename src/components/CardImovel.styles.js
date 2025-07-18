@@ -1,21 +1,21 @@
 import styled from 'styled-components';
 
 export const Card = styled.div`
-  background: var(--white);
-  border-radius: 8px;
+  background: var(--card-bg);
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   width: 100%;
   max-width: 320px;
   min-width: 260px;
-  transition: transform 0.2s ease-in-out;
-  flex-shrink: 0;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: pointer;
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   }
 
   @media (max-width: 480px) {
@@ -31,107 +31,64 @@ export const Imagem = styled.img`
 
 export const Infos = styled.div`
   padding: 1rem;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // garante que o botão fique sempre no fim
+  flex-grow: 1;
 
   h3 {
     font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    font-weight: 600;
     color: var(--text-color);
   }
 
   p {
-    color: var(--dark-text-color);
-    margin-bottom: 0.5rem;
+    color: var(--subtext-color);
+    font-size: 0.95rem;
   }
 
   strong {
-    display: block;
-    margin-bottom: 1rem;
-    color: var(--prymary-color);
+    color: var(--accent-color);
     font-size: 1.2rem;
+    font-weight: 600;
   }
 
-  .button{
+  .button {
     display: flex;
-    justify-content: space-between;  
-    align-items: center;            
-    width: 100%;  
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
   }
 `;
 
-
 export const Botao = styled.button`
-  padding: 0.5rem 1rem;
-
-  background: var(--green-color);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-
-  &:hover {
-    background: var(--green-hover-color);
-  }
+  padding: 0.45rem 1rem;
+  background: #eaf7ee;
+  color: var(--green-color);
+  border: 1px solid #c6e8d1;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: default;
 `;
 
 export const BotaoC = styled.button`
-  padding: 0.5rem;
-  background: var(--primary-color);
+  padding: 0.6rem;
+  background: var(--accent-color);
   border: none;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease-in-out;
   cursor: pointer;
+
   &:hover {
-    background: var(--hover-gray);
+    background-color: var(--accent-hover);
   }
 
-  img{
-    width: 22px;
-    height: auto;
-  }
-`;
-
-export const CardsLista = styled.div`
-  display: ${({ destaque }) => (destaque ? 'flex' : 'grid')};
-  flex-direction: row;
-  overflow-x: ${({ destaque }) => (destaque ? 'auto' : 'unset')};
-  gap: 1.5rem;
-  padding: 1.5rem 0;
-  scroll-behavior: smooth;
-
-  ${({ destaque }) =>
-    !destaque &&
-    `
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  `}
-
-  &::-webkit-scrollbar {
-    display: none;
+  img {
+    width: 20px;
+    height: 20px;
   }
 `;
-
-
-export const ScrollButton = styled.button`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  background: rgba(255,255,255,0.9);
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  padding: 0 1rem;
-
-  &.left {
-    left: 0;
-  }
-
-  &.right {
-    right: 0;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-  }
-`;
-
