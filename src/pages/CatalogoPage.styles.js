@@ -6,7 +6,7 @@ export const Container = styled.div`
   padding: 0 1rem;
 `;
 
-export const Title = styled.div`
+export const Titulo = styled.div`
   padding: 2.5rem 1rem 1rem;
   text-align: center;
 
@@ -34,7 +34,7 @@ export const Title = styled.div`
   }
 `;
 
-export const Filters = styled.div`
+export const Filtro = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;

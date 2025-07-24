@@ -8,8 +8,8 @@ import { Loader } from '../components/Loader';
 
 import { 
   Container, 
-  Title, 
-  Filters, 
+  Titulo, 
+  Filtro, 
   Grid, 
   Pagination } from './CatalogoPage.styles';
 
@@ -62,12 +62,12 @@ export function CatalogoPage() {
     <>
       <Header />
       <Container>
-        <Title>
+        <Titulo>
           <h1>Explore Nossos Imóveis</h1>
           <p>Encontre Imóveis Comerciais, apartamentos e casas com os melhores preços</p>
-        </Title>
+        </Titulo>
 
-        <Filters>
+        <Filtro>
           <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
             <option value="">Todos os Tipos</option>
             <option value="venda">Venda</option>
@@ -100,7 +100,7 @@ export function CatalogoPage() {
           >
             Limpar Filtros
           </button>
-        </Filters>
+        </Filtro>
 
         <Grid>
           {imoveisFiltrados.slice(inicio, fim).map((item) => (
