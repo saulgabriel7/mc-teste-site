@@ -38,7 +38,7 @@ export const Info = styled.div`
   }
 `;
 
-export const InfoRow = styled.div`
+export const Row = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
@@ -75,14 +75,14 @@ export const Detalhes = styled.div`
   }
 `;
 
-export const Price = styled.div`
+export const Preco = styled.div`
   margin-top: 1rem;
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--green-color);
 `;
 
-export const CTAButtons = styled.div`
+export const CTA = styled.div`
   margin-top: 1.5rem;
   display: flex;
   gap: 1rem;
@@ -94,23 +94,23 @@ export const CTAButtons = styled.div`
     cursor: pointer;
     font-weight: bold;
     transition: background 0.3s;
+  }
 
-    &.primary {
-      background: var(--accent-color);
-      color: white;
+  .primary {
+    background: var(--accent-color);
+    color: #fff;
+  }
 
-      &:hover {
-        background: var(--accent-hover);
-      }
-    }
+  .primary:hover {
+    background: var(--accent-hover);
+  }
 
-    &.secondary {
-      background: #e0e0e0;
-      color: #333;
+  .secondary {
+    background: var(--subtext-color);
+    color: #333;
+  }
 
-      &:hover {
-        background: #ccc;
-      }
-    }
+  .secondary:hover {
+    background: #ccc;
   }
 `;

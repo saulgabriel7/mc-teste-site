@@ -13,11 +13,10 @@ export const Navegacao = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0.5rem 2rem;
 
   img {
-    width: 64px;
-    height: auto;
+    width: 82px;
   }
 
   .contato-menu {

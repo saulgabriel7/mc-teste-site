@@ -33,8 +33,8 @@ export const imoveisMock = [
     imagem: imv1,
     imovel: 'Galpão, 1566 m² - Vila Cardoso - Capivari/SP',
     descricao: 'Ótimo galpão comercial, com 1566 m² de área construída, excelente para supermercado ou agencia de carros.',
-    cidade: 'São Paulo',
-    regiao: 'Capivari',
+    cidade: 'Capivari',
+    regiao: 'Vila Cardoso',
     preco: 'R$ 50.000 / mês'
   },
     {
