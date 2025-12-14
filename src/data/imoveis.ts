@@ -210,9 +210,9 @@ export const imoveis: Imovel[] = [
         tipo: 'locacao',
         imagem: '/IMV017/1.jpeg',
         imagens: Array.from({ length: 10 }, (_, i) => `/IMV017/${i + 1}.jpeg`),
-        imovel: 'Galpão, 1250m² - São José dos Campos/SP',
-        descricao: 'Galpão conta com 1250m² e está localizado em São José dos Campos, ideal para empresas que buscam um espaço funcional e bem localizado.',
-        cidade: 'São José dos Campos',
+        imovel: 'Galpão, 1250m² - São Bernardo do Campo/SP',
+        descricao: 'Galpão conta com 1250m² e está localizado em São Bernardo do Campo, ideal para empresas que buscam um espaço funcional e bem localizado.',
+        cidade: 'São Bernardo do Campo',
         bairro: 'Jardim do Mar',
         preco: 'R$ 28.000 / mês'
     },
