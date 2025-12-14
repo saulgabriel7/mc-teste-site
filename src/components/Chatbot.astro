@@ -1,0 +1,416 @@
+---
+/**
+ * AI Chatbot Component - Gemini 1.5 Flash
+ * Ajuda clientes a encontrar imóveis e direciona para WhatsApp
+ */
+
+const GEMINI_API_KEY = import.meta.env.PUBLIC_GEMINI_API_KEY;
+---
+
+<!-- Chat Button -->
+<button
+    id="chat-toggle"
+    class="fixed bottom-6 right-6 z-40 w-14 h-14 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-full shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+    aria-label="Abrir chat com IA"
+>
+    <i class="ph-bold ph-robot text-2xl group-hover:hidden"></i>
+    <i class="ph-bold ph-chat-circle-dots text-2xl hidden group-hover:block"
+    ></i>
+</button>
+
+<!-- Chat Window -->
+<div
+    id="chat-window"
+    class="fixed bottom-20 right-6 z-50 w-[360px] max-w-[calc(100vw-2rem)] h-[500px] max-h-[calc(100vh-8rem)] bg-white dark:bg-accent-800 rounded-2xl shadow-2xl flex flex-col overflow-hidden transform scale-95 opacity-0 pointer-events-none transition-all duration-300 origin-bottom-right"
+    aria-hidden="true"
+>
+    <!-- Header -->
+    <div
+        class="bg-gradient-to-r from-primary-500 to-primary-600 p-4 flex items-center gap-3"
+    >
+        <div
+            class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center"
+        >
+            <i class="ph-bold ph-robot text-xl text-white"></i>
+        </div>
+        <div class="flex-1">
+            <h3 class="font-semibold text-white">MC Assistente</h3>
+            <p class="text-xs text-white/80">Powered by Gemini AI</p>
+        </div>
+        <button
+            id="chat-close"
+            class="p-2 hover:bg-white/20 rounded-lg transition-colors"
+            aria-label="Fechar chat"
+        >
+            <i class="ph-bold ph-x text-white"></i>
+        </button>
+    </div>
+
+    <!-- Messages -->
+    <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4">
+        <!-- Welcome message -->
+        <div class="flex gap-3">
+            <div
+                class="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0"
+            >
+                <i class="ph ph-robot text-primary-600 dark:text-primary-400"
+                ></i>
+            </div>
+            <div
+                class="bg-accent-100 dark:bg-accent-700 rounded-2xl rounded-tl-none p-3 max-w-[80%]"
+            >
+                <p class="text-sm text-accent-700 dark:text-accent-200">
+                    Olá! 👋 Sou o assistente virtual da MC Assessoria. Posso
+                    ajudar você a encontrar o imóvel comercial ideal!
+                </p>
+                <p class="text-sm text-accent-700 dark:text-accent-200 mt-2">
+                    Como posso ajudar hoje?
+                </p>
+            </div>
+        </div>
+
+        <!-- Quick actions -->
+        <div class="flex flex-wrap gap-2 pl-11">
+            <button
+                class="quick-action px-3 py-1.5 text-xs bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/40 transition-colors"
+            >
+                Buscar galpões em SP
+            </button>
+            <button
+                class="quick-action px-3 py-1.5 text-xs bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/40 transition-colors"
+            >
+                Ver imóveis disponíveis
+            </button>
+            <button
+                class="quick-action px-3 py-1.5 text-xs bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 rounded-full hover:bg-primary-100 dark:hover:bg-primary-900/40 transition-colors"
+            >
+                Falar com corretor
+            </button>
+        </div>
+    </div>
+
+    <!-- Input -->
+    <div class="p-4 border-t border-accent-200 dark:border-accent-700">
+        <form id="chat-form" class="flex gap-2">
+            <input
+                type="text"
+                id="chat-input"
+                placeholder="Digite sua mensagem..."
+                class="flex-1 px-4 py-3 bg-accent-50 dark:bg-accent-700 rounded-xl text-sm text-accent-900 dark:text-white placeholder-accent-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                autocomplete="off"
+            />
+            <button
+                type="submit"
+                class="w-12 h-12 bg-primary-500 hover:bg-primary-600 rounded-xl flex items-center justify-center text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                id="chat-submit"
+            >
+                <i class="ph-bold ph-paper-plane-tilt"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- WhatsApp CTA -->
+    <div class="px-4 pb-4">
+        <a
+            href="https://wa.me/5511947708668?text=Olá! Vim do chat do site e gostaria de mais informações."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 w-full py-2.5 bg-green-500 hover:bg-green-600 text-white text-sm font-medium rounded-xl transition-colors"
+        >
+            <i class="ph-bold ph-whatsapp-logo"></i>
+            Continuar no WhatsApp
+        </a>
+    </div>
+</div>
+
+<script define:vars={{ GEMINI_API_KEY }}>
+    // ============================================
+    // CONFIGURAÇÃO - A chave vem do .env agora
+    // ============================================
+    // A constante GEMINI_API_KEY é injetada automaticamente pelo Astro através do define:vars
+    const API_URL =
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
+
+    // Contexto do sistema para o chatbot
+    const SYSTEM_CONTEXT = `Você é o assistente virtual da MC Assessoria Imobiliária, especializada em imóveis comerciais.
+
+SOBRE A EMPRESA:
+- MC Assessoria Imobiliária
+- Especialista em galpões, lojas e espaços comerciais
+- Atuação em São Paulo e região
+- WhatsApp: (11) 94770-8668
+
+IMÓVEIS DISPONÍVEIS (resumo):
+- 26 imóveis comerciais disponíveis para locação
+- Galpões de 900m² a 3000m²
+- Preços de R$ 15.000 a R$ 160.000/mês
+- Cidades: São Paulo, São José dos Campos, Rio de Janeiro, Ubatuba, Valinhos, Ribeirão Pires, Juiz de Fora, Campo Mourão, Itu, Avaré, Capivari, São Caetano do Sul
+
+SUAS DIRETRIZES:
+1. Seja cordial, profissional e objetivo
+2. Responda APENAS sobre imóveis comerciais e a empresa
+3. Se perguntarem sobre imóvel específico, sugira ver no site ou falar no WhatsApp
+4. Sempre incentive contato via WhatsApp para fechar negócio
+5. Use linguagem brasileira informal mas profissional
+6. Mantenha respostas curtas (máximo 2-3 frases)
+7. Se não souber algo, sugira falar com um corretor
+
+NUNCA:
+- Invente informações de imóveis
+- Dê conselhos legais ou financeiros
+- Fale sobre assuntos não relacionados a imóveis`;
+
+    const chatToggle = document.getElementById("chat-toggle");
+    const chatWindow = document.getElementById("chat-window");
+    const chatClose = document.getElementById("chat-close");
+    const chatForm = document.getElementById("chat-form");
+    const chatInput = document.getElementById("chat-input");
+    const chatMessages = document.getElementById("chat-messages");
+    const chatSubmit = document.getElementById("chat-submit");
+    const quickActions = document.querySelectorAll(".quick-action");
+
+    let conversationHistory = [];
+    let isOpen = false;
+
+    // Toggle chat
+    function toggleChat() {
+        isOpen = !isOpen;
+        if (isOpen) {
+            chatWindow?.classList.remove(
+                "scale-95",
+                "opacity-0",
+                "pointer-events-none",
+            );
+            chatWindow?.setAttribute("aria-hidden", "false");
+            chatInput?.focus();
+        } else {
+            chatWindow?.classList.add(
+                "scale-95",
+                "opacity-0",
+                "pointer-events-none",
+            );
+            chatWindow?.setAttribute("aria-hidden", "true");
+        }
+    }
+
+    chatToggle?.addEventListener("click", toggleChat);
+    chatClose?.addEventListener("click", toggleChat);
+
+    // Add message to chat
+    function addMessage(content, isUser = false) {
+        const messageDiv = document.createElement("div");
+        messageDiv.className = `flex gap-3 ${isUser ? "flex-row-reverse" : ""}`;
+
+        const avatar = isUser
+            ? '<div class="w-8 h-8 rounded-full bg-accent-200 dark:bg-accent-600 flex items-center justify-center flex-shrink-0"><i class="ph ph-user text-accent-600 dark:text-accent-300"></i></div>'
+            : '<div class="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0"><i class="ph ph-robot text-primary-600 dark:text-primary-400"></i></div>';
+
+        const bubbleClass = isUser
+            ? "bg-primary-500 text-white rounded-2xl rounded-tr-none"
+            : "bg-accent-100 dark:bg-accent-700 text-accent-700 dark:text-accent-200 rounded-2xl rounded-tl-none";
+
+        messageDiv.innerHTML = `
+      ${avatar}
+      <div class="${bubbleClass} p-3 max-w-[80%]">
+        <p class="text-sm whitespace-pre-wrap">${content}</p>
+      </div>
+    `;
+
+        chatMessages?.appendChild(messageDiv);
+        chatMessages?.scrollTo({
+            top: chatMessages.scrollHeight,
+            behavior: "smooth",
+        });
+    }
+
+    // Show typing indicator
+    function showTyping() {
+        const typingDiv = document.createElement("div");
+        typingDiv.id = "typing-indicator";
+        typingDiv.className = "flex gap-3";
+        typingDiv.innerHTML = `
+      <div class="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0">
+        <i class="ph ph-robot text-primary-600 dark:text-primary-400"></i>
+      </div>
+      <div class="bg-accent-100 dark:bg-accent-700 rounded-2xl rounded-tl-none p-3">
+        <div class="flex gap-1">
+          <span class="w-2 h-2 bg-accent-400 rounded-full animate-bounce" style="animation-delay: 0ms"></span>
+          <span class="w-2 h-2 bg-accent-400 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
+          <span class="w-2 h-2 bg-accent-400 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
+        </div>
+      </div>
+    `;
+        chatMessages?.appendChild(typingDiv);
+        chatMessages?.scrollTo({
+            top: chatMessages.scrollHeight,
+            behavior: "smooth",
+        });
+    }
+
+    function hideTyping() {
+        document.getElementById("typing-indicator")?.remove();
+    }
+
+    // Send message to Gemini
+    async function sendToGemini(message) {
+        conversationHistory.push({ role: "user", parts: [{ text: message }] });
+
+        const requestBody = {
+            contents: [
+                { role: "user", parts: [{ text: SYSTEM_CONTEXT }] },
+                {
+                    role: "model",
+                    parts: [
+                        {
+                            text: "Entendido! Estou pronto para ajudar os clientes da MC Assessoria Imobiliária.",
+                        },
+                    ],
+                },
+                ...conversationHistory,
+            ],
+            generationConfig: {
+                temperature: 0.7,
+                maxOutputTokens: 200,
+                topP: 0.8,
+            },
+        };
+
+        try {
+            const response = await fetch(`${API_URL}?key=${GEMINI_API_KEY}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(requestBody),
+            });
+
+            if (!response.ok) {
+                throw new Error("API request failed");
+            }
+
+            const data = await response.json();
+            const reply =
+                data.candidates?.[0]?.content?.parts?.[0]?.text ||
+                "Desculpe, não consegui processar sua mensagem. Que tal falar diretamente com nossa equipe no WhatsApp?";
+
+            conversationHistory.push({
+                role: "model",
+                parts: [{ text: reply }],
+            });
+
+            return reply;
+        } catch (error) {
+            console.error("Gemini API error:", error);
+            return "Ops! Tive um probleminha. 😅 Que tal falar diretamente com nossa equipe no WhatsApp? Eles podem te ajudar melhor!";
+        }
+    }
+
+    // Handle form submit
+    chatForm?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const message = chatInput?.value.trim();
+        if (!message) return;
+
+        // Clear input
+        if (chatInput) chatInput.value = "";
+
+        // Disable submit
+        if (chatSubmit) chatSubmit.disabled = true;
+
+        // Add user message
+        addMessage(message, true);
+
+        // Show typing
+        showTyping();
+
+        // Check for "corretor" intent locally to ensure it works even if API fails
+        if (
+            message.toLowerCase().includes("corretor") ||
+            message.toLowerCase().includes("whatsapp") ||
+            message.toLowerCase().includes("falar com a equipe")
+        ) {
+            await new Promise((resolve) => setTimeout(resolve, 1000)); // Fake delay
+            hideTyping();
+            addMessage(
+                "Claro! Você pode falar com nossa equipe diretamente pelo WhatsApp. Basta clicar no botão verde abaixo 'Continuar no WhatsApp' para iniciar a conversa! 👇",
+            );
+        } else if (
+            message.toLowerCase().includes("imóvei") ||
+            message.toLowerCase().includes("imovei") ||
+            message.toLowerCase().includes("galp") ||
+            message.toLowerCase().includes("buscar") ||
+            message.toLowerCase().includes("ver") ||
+            message.toLowerCase().includes("conhecer")
+        ) {
+            await new Promise((resolve) => setTimeout(resolve, 1000)); // Fake delay
+            hideTyping();
+            addMessage(
+                `Temos ótimas opções para você! 🏢<br><br>Confira nossa lista completa de imóveis comerciais disponíveis clicando no link abaixo:<br><br><a href="/imoveis" class="underline font-bold text-primary-600 dark:text-primary-400 hover:text-primary-700">➜ Ver Todos os Imóveis</a>`,
+            );
+        } else if (
+            [
+                "oi",
+                "ola",
+                "olá",
+                "bom dia",
+                "boa tarde",
+                "boa noite",
+                "tudo bem",
+            ].some((greeting) => message.toLowerCase().includes(greeting))
+        ) {
+            await new Promise((resolve) => setTimeout(resolve, 1000)); // Fake delay
+            hideTyping();
+            addMessage(
+                "Olá! 👋 Tudo bem? Sou o assistente virtual da MC Assessoria. \n\nEstou aqui para te ajudar a encontrar seu imóvel comercial ideal. Você pode:\n\n1️⃣ Digitar **'buscar'** para ver imóveis\n2️⃣ Digitar **'corretor'** para falar no WhatsApp\n3️⃣ Ou me contar o que procura!",
+            );
+        } else {
+            // Get AI response
+            const reply = await sendToGemini(message);
+
+            // Hide typing
+            hideTyping();
+
+            // Check if API failed (returned the default error message)
+            if (reply.startsWith("Ops!")) {
+                addMessage(
+                    "Minha conexão com a inteligência artificial está instável agora. 😕\n\nMas não se preocupe! Como posso te ajudar?\n\n🏢 <a href='/imoveis' class='underline font-bold'>Ver Imóveis Disponíveis</a>\n💬 <a href='https://wa.me/5511947708668' target='_blank' class='underline font-bold'>Falar no WhatsApp</a>",
+                );
+            } else {
+                addMessage(reply);
+            }
+        }
+
+        // Re-enable submit
+        if (chatSubmit) chatSubmit.disabled = false;
+        chatInput?.focus();
+    });
+
+    // Quick actions
+    quickActions.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const text = btn.textContent?.trim();
+            if (text && chatInput) {
+                chatInput.value = text;
+                chatForm?.dispatchEvent(new Event("submit"));
+            }
+        });
+    });
+
+    // Keyboard shortcut
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && isOpen) {
+            toggleChat();
+        }
+    });
+</script>
+
+<style>
+    @keyframes bounce {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-4px);
+        }
+    }
+</style>

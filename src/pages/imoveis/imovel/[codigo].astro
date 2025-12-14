@@ -1,0 +1,371 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import ImageCarousel from "../../../components/ImageCarousel.astro";
+import CardImovel from "../../../components/CardImovel.astro";
+import { imoveis, getImovelByCodigo } from "../../../data/imoveis";
+
+export function getStaticPaths() {
+    return imoveis.map((imovel) => ({
+        params: { codigo: imovel.codigo },
+    }));
+}
+
+const { codigo } = Astro.params;
+const imovel = getImovelByCodigo(codigo || "");
+
+if (!imovel) {
+    return Astro.redirect("/imoveis");
+}
+
+const relacionados = imoveis
+    .filter((i) => i.codigo !== imovel.codigo && i.cidade === imovel.cidade)
+    .slice(0, 3);
+
+const whatsappMessage = encodeURIComponent(
+    `Olá! Vim pelo site e tenho interesse no imóvel ${imovel.codigo} - ${imovel.imovel}. Pode me passar mais informações?`,
+);
+---
+
+<BaseLayout
+    title={`${imovel.imovel} - MC Assessoria Imobiliária`}
+    description={imovel.descricao.slice(0, 160)}
+>
+    <Header variant="page" />
+
+    <main class="pt-20 pb-16 bg-accent-50 dark:bg-accent-900 min-h-screen">
+        <div class="container-custom px-4 sm:px-6">
+            <!-- Breadcrumb -->
+            <nav class="mb-4 sm:mb-6 overflow-x-auto" aria-label="Breadcrumb">
+                <ol
+                    class="flex items-center gap-2 text-xs sm:text-sm whitespace-nowrap"
+                >
+                    <li>
+                        <a
+                            href="/"
+                            class="text-accent-500 hover:text-primary-500 transition-colors"
+                            >Início</a
+                        >
+                    </li>
+                    <li class="text-accent-400">/</li>
+                    <li>
+                        <a
+                            href="/imoveis"
+                            class="text-accent-500 hover:text-primary-500 transition-colors"
+                            >Imóveis</a
+                        >
+                    </li>
+                    <li class="text-accent-400">/</li>
+                    <li
+                        class="text-accent-700 dark:text-accent-300 font-medium"
+                    >
+                        {imovel.codigo}
+                    </li>
+                </ol>
+            </nav>
+
+            <!-- Mobile: Price bar fixed at bottom -->
+            <div
+                class="fixed bottom-0 left-0 right-0 z-30 lg:hidden bg-white dark:bg-accent-800 border-t border-accent-200 dark:border-accent-700 p-4 shadow-lg"
+            >
+                <div class="flex items-center justify-between gap-4">
+                    <div>
+                        <p class="text-xs text-accent-500 dark:text-accent-400">
+                            Valor
+                        </p>
+                        <p
+                            class="text-xl font-bold text-primary-600 dark:text-primary-400"
+                        >
+                            {imovel.preco}
+                        </p>
+                    </div>
+                    <a
+                        href={`https://wa.me/5511947708668?text=${whatsappMessage}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="flex-1 max-w-[200px] flex items-center justify-center gap-2 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl transition-all"
+                    >
+                        <i class="ph-bold ph-whatsapp-logo text-lg"></i>
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <div
+                class="flex flex-col lg:grid lg:grid-cols-3 gap-6 lg:gap-8 pb-24 lg:pb-0"
+            >
+                <!-- Main content -->
+                <div class="lg:col-span-2 space-y-4 sm:space-y-6">
+                    <!-- Image Carousel -->
+                    <ImageCarousel
+                        images={imovel.imagens}
+                        title={imovel.imovel}
+                    />
+
+                    <!-- Info Card -->
+                    <div class="card p-4 sm:p-6 md:p-8">
+                        <!-- Badge and code -->
+                        <div
+                            class="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4"
+                        >
+                            <span
+                                class={`px-2 sm:px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide ${
+                                    imovel.tipo === "locacao"
+                                        ? "bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-400"
+                                        : "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
+                                }`}
+                            >
+                                {
+                                    imovel.tipo === "locacao"
+                                        ? "Locação"
+                                        : "Venda"
+                                }
+                            </span>
+                            <span
+                                class="text-accent-500 dark:text-accent-400 text-xs sm:text-sm font-mono"
+                                >{imovel.codigo}</span
+                            >
+                        </div>
+
+                        <!-- Title -->
+                        <h1
+                            class="text-xl sm:text-2xl md:text-3xl font-display font-bold text-accent-900 dark:text-white mb-3 sm:mb-4 leading-tight"
+                        >
+                            {imovel.imovel}
+                        </h1>
+
+                        <!-- Location -->
+                        <div
+                            class="flex items-center gap-2 text-sm sm:text-base text-accent-600 dark:text-accent-400 mb-4 sm:mb-6"
+                        >
+                            <i class="ph ph-map-pin text-primary-500"></i>
+                            <span>{imovel.bairro}, {imovel.cidade}</span>
+                        </div>
+
+                        <!-- Description -->
+                        <div>
+                            <h2
+                                class="text-base sm:text-lg font-semibold text-accent-900 dark:text-white mb-2 sm:mb-3"
+                            >
+                                Descrição
+                            </h2>
+                            <p
+                                class="text-sm sm:text-base text-accent-600 dark:text-accent-400 leading-relaxed"
+                            >
+                                {imovel.descricao}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="card p-4 sm:p-6 md:p-8">
+                        <h2
+                            class="text-base sm:text-lg font-semibold text-accent-900 dark:text-white mb-4 sm:mb-6"
+                        >
+                            Características
+                        </h2>
+                        <div
+                            class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6"
+                        >
+                            <div class="flex items-center gap-2 sm:gap-3">
+                                <div
+                                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0"
+                                >
+                                    <i
+                                        class="ph ph-ruler text-sm sm:text-base text-primary-600 dark:text-primary-400"
+                                    ></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p
+                                        class="text-[10px] sm:text-xs text-accent-500 dark:text-accent-400"
+                                    >
+                                        Área
+                                    </p>
+                                    <p
+                                        class="text-xs sm:text-sm font-medium text-accent-900 dark:text-white truncate"
+                                    >
+                                        Consultar
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 sm:gap-3">
+                                <div
+                                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0"
+                                >
+                                    <i
+                                        class="ph ph-car text-sm sm:text-base text-primary-600 dark:text-primary-400"
+                                    ></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p
+                                        class="text-[10px] sm:text-xs text-accent-500 dark:text-accent-400"
+                                    >
+                                        Vagas
+                                    </p>
+                                    <p
+                                        class="text-xs sm:text-sm font-medium text-accent-900 dark:text-white truncate"
+                                    >
+                                        Consultar
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 sm:gap-3">
+                                <div
+                                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0"
+                                >
+                                    <i
+                                        class="ph ph-warehouse text-sm sm:text-base text-primary-600 dark:text-primary-400"
+                                    ></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p
+                                        class="text-[10px] sm:text-xs text-accent-500 dark:text-accent-400"
+                                    >
+                                        Tipo
+                                    </p>
+                                    <p
+                                        class="text-xs sm:text-sm font-medium text-accent-900 dark:text-white truncate"
+                                    >
+                                        Comercial
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 sm:gap-3">
+                                <div
+                                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0"
+                                >
+                                    <i
+                                        class="ph ph-door text-sm sm:text-base text-primary-600 dark:text-primary-400"
+                                    ></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p
+                                        class="text-[10px] sm:text-xs text-accent-500 dark:text-accent-400"
+                                    >
+                                        Situação
+                                    </p>
+                                    <p
+                                        class="text-xs sm:text-sm font-medium text-accent-900 dark:text-white truncate"
+                                    >
+                                        Disponível
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar - Desktop only (mobile has fixed bottom bar) -->
+                <div class="hidden lg:block lg:col-span-1">
+                    <div class="card p-6 lg:sticky lg:top-28">
+                        <!-- Price -->
+                        <div class="mb-6">
+                            <p
+                                class="text-sm text-accent-500 dark:text-accent-400 mb-1"
+                            >
+                                Valor
+                            </p>
+                            <p
+                                class="text-3xl font-bold text-primary-600 dark:text-primary-400"
+                            >
+                                {imovel.preco}
+                            </p>
+                        </div>
+
+                        <!-- CTAs -->
+                        <div class="space-y-3">
+                            <a
+                                href={`https://wa.me/5511947708668?text=${whatsappMessage}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="flex items-center justify-center gap-2 w-full py-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg"
+                            >
+                                <i class="ph-bold ph-whatsapp-logo text-xl"></i>
+                                Falar no WhatsApp
+                            </a>
+
+                            <button
+                                id="share-btn"
+                                class="flex items-center justify-center gap-2 w-full py-4 bg-accent-100 dark:bg-accent-800 hover:bg-accent-200 dark:hover:bg-accent-700 text-accent-700 dark:text-accent-200 font-semibold rounded-xl transition-all duration-300"
+                            >
+                                <i class="ph-bold ph-share-network text-xl"></i>
+                                Compartilhar
+                            </button>
+                        </div>
+
+                        <!-- Contact info -->
+                        <div
+                            class="mt-8 pt-6 border-t border-accent-200 dark:border-accent-700"
+                        >
+                            <p
+                                class="text-sm font-medium text-accent-900 dark:text-white mb-4"
+                            >
+                                Atendimento
+                            </p>
+                            <div class="space-y-3">
+                                <a
+                                    href="tel:+5511947708668"
+                                    class="flex items-center gap-3 text-accent-600 dark:text-accent-400 hover:text-primary-500 transition-colors"
+                                >
+                                    <i class="ph ph-phone text-lg"></i>
+                                    (11) 94770-8668
+                                </a>
+                                <a
+                                    href="mailto:contato@mcassessoria.com.br"
+                                    class="flex items-center gap-3 text-accent-600 dark:text-accent-400 hover:text-primary-500 transition-colors"
+                                >
+                                    <i class="ph ph-envelope text-lg"></i>
+                                    contato@mcassessoria.com.br
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related properties -->
+            {
+                relacionados.length > 0 && (
+                    <section class="mt-8 sm:mt-16">
+                        <h2 class="text-lg sm:text-xl font-display font-bold text-accent-900 dark:text-white mb-4 sm:mb-8">
+                            Imóveis Relacionados
+                        </h2>
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+                            {relacionados.map((item) => (
+                                <CardImovel item={item} />
+                            ))}
+                        </div>
+                    </section>
+                )
+            }
+        </div>
+    </main>
+
+    <Footer />
+</BaseLayout>
+
+<script>
+    const shareBtn = document.getElementById("share-btn");
+
+    shareBtn?.addEventListener("click", async () => {
+        const url = window.location.href;
+        const title = document.title;
+
+        if (navigator.share) {
+            try {
+                await navigator.share({ title, url });
+            } catch (err) {
+                // User cancelled
+            }
+        } else {
+            // Fallback: copy to clipboard
+            try {
+                await navigator.clipboard.writeText(url);
+                alert("Link copiado para a área de transferência!");
+            } catch (err) {
+                prompt("Copie o link:", url);
+            }
+        }
+    });
+</script>

@@ -1,0 +1,277 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import CardImovel from "../../components/CardImovel.astro";
+import { imoveis, getAllCidades } from "../../data/imoveis";
+
+const cidades = getAllCidades();
+---
+
+<BaseLayout
+    title="Imóveis Comerciais - MC Assessoria Imobiliária"
+    description="Encontre galpões, salões comerciais e lojas para locação em São Paulo e região. Veja nossa seleção de imóveis comerciais."
+>
+    <Header variant="page" />
+
+    <main class="pt-24 pb-16 min-h-screen bg-accent-50 dark:bg-accent-900">
+        <div class="container-custom">
+            <!-- Title -->
+            <div class="text-center mb-12">
+                <h1 class="section-title">Nossos Imóveis</h1>
+                <p class="section-subtitle max-w-2xl mx-auto">
+                    Encontre galpões, salões comerciais e lojas com os melhores
+                    preços
+                </p>
+            </div>
+
+            <!-- Filters -->
+            <div class="card p-6 mb-10">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4" id="filters">
+                    <div>
+                        <label
+                            class="block text-sm font-medium text-accent-700 dark:text-accent-300 mb-2"
+                            >Tipo</label
+                        >
+                        <select id="filter-tipo" class="select">
+                            <option value="">Todos os Tipos</option>
+                            <option value="locacao">Locação</option>
+                            <option value="venda">Venda</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label
+                            class="block text-sm font-medium text-accent-700 dark:text-accent-300 mb-2"
+                            >Cidade</label
+                        >
+                        <select id="filter-cidade" class="select">
+                            <option value="">Todas as Cidades</option>
+                            {
+                                cidades.map((cidade) => (
+                                    <option value={cidade}>{cidade}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
+
+                    <div>
+                        <label
+                            class="block text-sm font-medium text-accent-700 dark:text-accent-300 mb-2"
+                            >Preço Máximo</label
+                        >
+                        <input
+                            type="number"
+                            id="filter-preco"
+                            placeholder="Ex: 50000"
+                            class="input"
+                            min="0"
+                            step="1000"
+                        />
+                    </div>
+
+                    <div class="flex items-end">
+                        <button id="clear-filters" class="btn-secondary w-full">
+                            <i class="ph ph-x"></i>
+                            Limpar Filtros
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results count -->
+            <div class="flex items-center justify-between mb-6">
+                <p class="text-accent-600 dark:text-accent-400">
+                    <span id="results-count">{imoveis.length}</span> imóveis encontrados
+                </p>
+            </div>
+
+            <!-- Grid -->
+            <div
+                id="imoveis-grid"
+                class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+                {
+                    imoveis.map((item) => (
+                        <div
+                            class="imovel-card"
+                            data-tipo={item.tipo}
+                            data-cidade={item.cidade}
+                            data-preco={parseInt(item.preco.replace(/\D/g, ""))}
+                        >
+                            <CardImovel item={item} />
+                        </div>
+                    ))
+                }
+            </div>
+
+            <!-- Empty state -->
+            <div id="empty-state" class="hidden text-center py-16">
+                <div
+                    class="w-24 h-24 mx-auto mb-6 rounded-full bg-accent-100 dark:bg-accent-800 flex items-center justify-center"
+                >
+                    <i class="ph ph-magnifying-glass text-4xl text-accent-400"
+                    ></i>
+                </div>
+                <h3
+                    class="text-xl font-semibold text-accent-900 dark:text-white mb-2"
+                >
+                    Nenhum imóvel encontrado
+                </h3>
+                <p class="text-accent-600 dark:text-accent-400 mb-6">
+                    Tente ajustar os filtros para encontrar mais resultados
+                </p>
+                <button id="reset-filters" class="btn-primary">
+                    Limpar Filtros
+                </button>
+            </div>
+
+            <!-- Pagination -->
+            <div
+                id="pagination"
+                class="flex items-center justify-center gap-2 mt-12"
+            >
+                <!-- Pagination will be generated by JS -->
+            </div>
+        </div>
+    </main>
+
+    <Footer />
+</BaseLayout>
+
+<script>
+    const ITEMS_PER_PAGE = 12;
+    let currentPage = 1;
+
+    const filterTipo = document.getElementById(
+        "filter-tipo",
+    ) as HTMLSelectElement;
+    const filterCidade = document.getElementById(
+        "filter-cidade",
+    ) as HTMLSelectElement;
+    const filterPreco = document.getElementById(
+        "filter-preco",
+    ) as HTMLInputElement;
+    const clearFiltersBtn = document.getElementById("clear-filters");
+    const resetFiltersBtn = document.getElementById("reset-filters");
+    const resultsCount = document.getElementById("results-count");
+    const grid = document.getElementById("imoveis-grid");
+    const emptyState = document.getElementById("empty-state");
+    const pagination = document.getElementById("pagination");
+    const cards = document.querySelectorAll(".imovel-card");
+
+    function getFilteredCards(): HTMLElement[] {
+        const tipo = filterTipo?.value || "";
+        const cidade = filterCidade?.value || "";
+        const precoMax = parseInt(filterPreco?.value || "0") || 0;
+
+        return Array.from(cards).filter((card) => {
+            const el = card as HTMLElement;
+            const cardTipo = el.dataset.tipo || "";
+            const cardCidade = el.dataset.cidade || "";
+            const cardPreco = parseInt(el.dataset.preco || "0");
+
+            const matchTipo = !tipo || cardTipo === tipo;
+            const matchCidade = !cidade || cardCidade === cidade;
+            const matchPreco = !precoMax || cardPreco <= precoMax;
+
+            return matchTipo && matchCidade && matchPreco;
+        }) as HTMLElement[];
+    }
+
+    function updateDisplay() {
+        const filtered = getFilteredCards();
+        const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+
+        // Update count
+        if (resultsCount) resultsCount.textContent = String(filtered.length);
+
+        // Hide all cards first
+        cards.forEach((card) => {
+            (card as HTMLElement).classList.add("hidden");
+        });
+
+        // Show filtered cards for current page
+        const start = (currentPage - 1) * ITEMS_PER_PAGE;
+        const end = start + ITEMS_PER_PAGE;
+        filtered.slice(start, end).forEach((card) => {
+            card.classList.remove("hidden");
+        });
+
+        // Show/hide empty state
+        if (filtered.length === 0) {
+            grid?.classList.add("hidden");
+            emptyState?.classList.remove("hidden");
+            pagination?.classList.add("hidden");
+        } else {
+            grid?.classList.remove("hidden");
+            emptyState?.classList.add("hidden");
+            pagination?.classList.remove("hidden");
+        }
+
+        // Update pagination
+        updatePagination(totalPages);
+    }
+
+    function updatePagination(totalPages: number) {
+        if (!pagination) return;
+
+        pagination.innerHTML = "";
+
+        if (totalPages <= 1) return;
+
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement("button");
+            btn.textContent = String(i);
+            btn.className = `w-10 h-10 flex items-center justify-center rounded-lg font-medium transition-colors ${
+                i === currentPage
+                    ? "bg-primary-500 text-white"
+                    : "bg-white dark:bg-accent-800 text-accent-600 dark:text-accent-300 hover:bg-primary-100 dark:hover:bg-accent-700"
+            }`;
+            btn.addEventListener("click", () => {
+                currentPage = i;
+                updateDisplay();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+            pagination.appendChild(btn);
+        }
+    }
+
+    function clearFilters() {
+        if (filterTipo) filterTipo.value = "";
+        if (filterCidade) filterCidade.value = "";
+        if (filterPreco) filterPreco.value = "";
+        currentPage = 1;
+        updateDisplay();
+    }
+
+    // Event listeners
+    filterTipo?.addEventListener("change", () => {
+        currentPage = 1;
+        updateDisplay();
+    });
+    filterCidade?.addEventListener("change", () => {
+        currentPage = 1;
+        updateDisplay();
+    });
+    filterPreco?.addEventListener("input", () => {
+        currentPage = 1;
+        updateDisplay();
+    });
+    clearFiltersBtn?.addEventListener("click", clearFilters);
+    resetFiltersBtn?.addEventListener("click", clearFilters);
+
+    // Initial display
+    updateDisplay();
+
+    // Handle URL params
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("tipo") && filterTipo) {
+        filterTipo.value = params.get("tipo") || "";
+        updateDisplay();
+    }
+    if (params.get("cidade") && filterCidade) {
+        filterCidade.value = params.get("cidade") || "";
+        updateDisplay();
+    }
+</script>

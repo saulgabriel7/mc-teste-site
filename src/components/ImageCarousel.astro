@@ -1,0 +1,289 @@
+---
+interface Props {
+    images: string[];
+    title: string;
+}
+
+const { images, title } = Astro.props;
+---
+
+<div class="image-carousel relative" data-images={JSON.stringify(images)}>
+    <!-- Main Image -->
+    <div
+        class="relative aspect-[16/10] md:aspect-[16/9] lg:aspect-[2/1] rounded-2xl overflow-hidden bg-accent-100 dark:bg-accent-800"
+    >
+        <img
+            id="main-image"
+            src={images[0]}
+            alt={title}
+            class="w-full h-full object-cover transition-opacity duration-300"
+            loading="eager"
+        />
+
+        <!-- Navigation arrows -->
+        <button
+            id="prev-btn"
+            class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-white/90 dark:bg-accent-800/90 backdrop-blur-sm shadow-lg hover:bg-white dark:hover:bg-accent-700 transition-all duration-300 hover:scale-110"
+            aria-label="Imagem anterior"
+        >
+            <i
+                class="ph-bold ph-caret-left text-xl text-accent-700 dark:text-white"
+            ></i>
+        </button>
+        <button
+            id="next-btn"
+            class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-white/90 dark:bg-accent-800/90 backdrop-blur-sm shadow-lg hover:bg-white dark:hover:bg-accent-700 transition-all duration-300 hover:scale-110"
+            aria-label="Próxima imagem"
+        >
+            <i
+                class="ph-bold ph-caret-right text-xl text-accent-700 dark:text-white"
+            ></i>
+        </button>
+
+        <!-- Image counter -->
+        <div
+            class="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-accent-900/70 backdrop-blur-sm rounded-full text-white text-sm font-medium"
+        >
+            <span id="current-index">1</span> / <span id="total-count"
+                >{images.length}</span
+            >
+        </div>
+
+        <!-- Fullscreen button -->
+        <button
+            id="fullscreen-btn"
+            class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-white/90 dark:bg-accent-800/90 backdrop-blur-sm shadow-lg hover:bg-white dark:hover:bg-accent-700 transition-all duration-300"
+            aria-label="Ver em tela cheia"
+        >
+            <i
+                class="ph-bold ph-arrows-out text-lg text-accent-700 dark:text-white"
+            ></i>
+        </button>
+    </div>
+
+    <!-- Thumbnails -->
+    {
+        images.length > 1 && (
+            <div class="mt-4 relative">
+                <div
+                    id="thumbnails"
+                    class="flex gap-2 overflow-x-auto pb-2 scroll-smooth scrollbar-hide"
+                >
+                    {images.map((img, index) => (
+                        <button
+                            class={`thumbnail flex-shrink-0 w-20 h-16 md:w-24 md:h-20 rounded-lg overflow-hidden border-2 transition-all duration-200 ${index === 0 ? "border-primary-500 ring-2 ring-primary-500/30" : "border-transparent hover:border-accent-300 dark:hover:border-accent-600"}`}
+                            data-index={index}
+                            aria-label={`Ver imagem ${index + 1}`}
+                        >
+                            <img
+                                src={img}
+                                alt={`${title} - Foto ${index + 1}`}
+                                class="w-full h-full object-cover"
+                                loading="lazy"
+                            />
+                        </button>
+                    ))}
+                </div>
+            </div>
+        )
+    }
+
+    <!-- Fullscreen Modal -->
+    <div
+        id="fullscreen-modal"
+        class="fixed inset-0 bg-black z-50 opacity-0 pointer-events-none transition-opacity duration-300"
+        aria-hidden="true"
+    >
+        <button
+            id="close-fullscreen"
+            class="absolute top-4 right-4 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors"
+            aria-label="Fechar"
+        >
+            <i class="ph-bold ph-x text-2xl text-white"></i>
+        </button>
+
+        <div class="w-full h-full flex items-center justify-center p-4">
+            <img
+                id="fullscreen-image"
+                src={images[0]}
+                alt={title}
+                class="max-w-full max-h-full object-contain"
+            />
+        </div>
+
+        <button
+            id="fullscreen-prev"
+            class="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors"
+            aria-label="Imagem anterior"
+        >
+            <i class="ph-bold ph-caret-left text-2xl text-white"></i>
+        </button>
+        <button
+            id="fullscreen-next"
+            class="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-colors"
+            aria-label="Próxima imagem"
+        >
+            <i class="ph-bold ph-caret-right text-2xl text-white"></i>
+        </button>
+
+        <div
+            class="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-lg font-medium"
+        >
+            <span id="fullscreen-index">1</span> / {images.length}
+        </div>
+    </div>
+</div>
+
+<style>
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const carousel = document.querySelector(".image-carousel");
+        if (!carousel) return;
+
+        const images: string[] = JSON.parse(
+            carousel.getAttribute("data-images") || "[]",
+        );
+        let currentIndex = 0;
+
+        const mainImage = document.getElementById(
+            "main-image",
+        ) as HTMLImageElement;
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+        const currentIndexEl = document.getElementById("current-index");
+        const thumbnails = document.querySelectorAll(".thumbnail");
+        const fullscreenBtn = document.getElementById("fullscreen-btn");
+        const fullscreenModal = document.getElementById("fullscreen-modal");
+        const closeFullscreen = document.getElementById("close-fullscreen");
+        const fullscreenImage = document.getElementById(
+            "fullscreen-image",
+        ) as HTMLImageElement;
+        const fullscreenPrev = document.getElementById("fullscreen-prev");
+        const fullscreenNext = document.getElementById("fullscreen-next");
+        const fullscreenIndex = document.getElementById("fullscreen-index");
+
+        function updateImage(index: number) {
+            currentIndex = index;
+            mainImage.src = images[index];
+            if (currentIndexEl) currentIndexEl.textContent = String(index + 1);
+            if (fullscreenImage) fullscreenImage.src = images[index];
+            if (fullscreenIndex)
+                fullscreenIndex.textContent = String(index + 1);
+
+            thumbnails.forEach((thumb, i) => {
+                if (i === index) {
+                    thumb.classList.add(
+                        "border-primary-500",
+                        "ring-2",
+                        "ring-primary-500/30",
+                    );
+                    thumb.classList.remove("border-transparent");
+                } else {
+                    thumb.classList.remove(
+                        "border-primary-500",
+                        "ring-2",
+                        "ring-primary-500/30",
+                    );
+                    thumb.classList.add("border-transparent");
+                }
+            });
+        }
+
+        prevBtn?.addEventListener("click", () => {
+            updateImage(
+                currentIndex > 0 ? currentIndex - 1 : images.length - 1,
+            );
+        });
+
+        nextBtn?.addEventListener("click", () => {
+            updateImage(
+                currentIndex < images.length - 1 ? currentIndex + 1 : 0,
+            );
+        });
+
+        thumbnails.forEach((thumb) => {
+            thumb.addEventListener("click", () => {
+                const index = parseInt(thumb.getAttribute("data-index") || "0");
+                updateImage(index);
+            });
+        });
+
+        // Fullscreen
+        fullscreenBtn?.addEventListener("click", () => {
+            fullscreenModal?.classList.remove(
+                "opacity-0",
+                "pointer-events-none",
+            );
+            document.body.style.overflow = "hidden";
+        });
+
+        closeFullscreen?.addEventListener("click", () => {
+            fullscreenModal?.classList.add("opacity-0", "pointer-events-none");
+            document.body.style.overflow = "";
+        });
+
+        fullscreenPrev?.addEventListener("click", () => {
+            updateImage(
+                currentIndex > 0 ? currentIndex - 1 : images.length - 1,
+            );
+        });
+
+        fullscreenNext?.addEventListener("click", () => {
+            updateImage(
+                currentIndex < images.length - 1 ? currentIndex + 1 : 0,
+            );
+        });
+
+        // Keyboard navigation
+        document.addEventListener("keydown", (e) => {
+            if (!fullscreenModal?.classList.contains("pointer-events-none")) {
+                if (e.key === "ArrowLeft")
+                    updateImage(
+                        currentIndex > 0 ? currentIndex - 1 : images.length - 1,
+                    );
+                if (e.key === "ArrowRight")
+                    updateImage(
+                        currentIndex < images.length - 1 ? currentIndex + 1 : 0,
+                    );
+                if (e.key === "Escape") {
+                    fullscreenModal?.classList.add(
+                        "opacity-0",
+                        "pointer-events-none",
+                    );
+                    document.body.style.overflow = "";
+                }
+            }
+        });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        mainImage?.addEventListener("touchstart", (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        mainImage?.addEventListener("touchend", (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    updateImage(
+                        currentIndex < images.length - 1 ? currentIndex + 1 : 0,
+                    );
+                } else {
+                    updateImage(
+                        currentIndex > 0 ? currentIndex - 1 : images.length - 1,
+                    );
+                }
+            }
+        });
+    });
+</script>

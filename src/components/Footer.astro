@@ -1,0 +1,193 @@
+---
+import Chatbot from "./Chatbot.astro";
+const currentYear = new Date().getFullYear();
+
+import { Image } from "astro:assets";
+import logo from "../assets/logo.png";
+---
+
+<footer class="bg-accent-900 dark:bg-accent-950 text-white mt-auto">
+    <div class="container-custom py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <!-- Brand -->
+            <div class="lg:col-span-1">
+                <a href="/" class="flex items-center gap-3 mb-6">
+                <Image
+                    src={logo}
+                    alt="MC Assessoria Imobiliária"
+                    class="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
+                />
+                    <span class="font-display font-bold text-xl"
+                        >MC Assessoria</span
+                    >
+                </a>
+                <p class="text-accent-300 text-sm leading-relaxed mb-6">
+                    Especialistas em imóveis comerciais. Encontre o espaço ideal
+                    para o seu negócio crescer.
+                </p>
+                <div class="flex gap-4">
+                    <a
+                        href="https://wa.me/5511947708668"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="w-10 h-10 flex items-center justify-center rounded-full bg-accent-800 hover:bg-primary-500 transition-colors duration-300"
+                        aria-label="WhatsApp"
+                    >
+                        <i class="ph-bold ph-whatsapp-logo text-lg"></i>
+                    </a>
+                    <a
+                        href="mailto:contato@mcassessoria.com.br"
+                        class="w-10 h-10 flex items-center justify-center rounded-full bg-accent-800 hover:bg-primary-500 transition-colors duration-300"
+                        aria-label="Email"
+                    >
+                        <i class="ph-bold ph-envelope text-lg"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div>
+                <h3 class="font-display font-semibold text-lg mb-6">
+                    Navegação
+                </h3>
+                <ul class="space-y-3">
+                    <li>
+                        <a
+                            href="/"
+                            class="text-accent-300 hover:text-primary-400 transition-colors duration-200 flex items-center gap-2"
+                        >
+                            <i class="ph ph-caret-right text-sm"></i> Início
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="/imoveis"
+                            class="text-accent-300 hover:text-primary-400 transition-colors duration-200 flex items-center gap-2"
+                        >
+                            <i class="ph ph-caret-right text-sm"></i> Imóveis
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="/sobre"
+                            class="text-accent-300 hover:text-primary-400 transition-colors duration-200 flex items-center gap-2"
+                        >
+                            <i class="ph ph-caret-right text-sm"></i> Sobre Nós
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="/indique-seu-imovel"
+                            class="text-accent-300 hover:text-primary-400 transition-colors duration-200 flex items-center gap-2"
+                        >
+                            <i class="ph ph-caret-right text-sm"></i> Indique seu
+                            Imóvel
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Services -->
+            <div>
+                <h3 class="font-display font-semibold text-lg mb-6">
+                    Serviços
+                </h3>
+                <ul class="space-y-3">
+                    <li>
+                        <a
+                            href="/imoveis?tipo=locacao"
+                            class="text-accent-300 hover:text-primary-400 transition-colors duration-200 flex items-center gap-2"
+                        >
+                            <i class="ph ph-caret-right text-sm"></i> Locação Comercial
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="/imoveis?tipo=venda"
+                            class="text-accent-300 hover:text-primary-400 transition-colors duration-200 flex items-center gap-2"
+                        >
+                            <i class="ph ph-caret-right text-sm"></i> Venda de Imóveis
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="/indique-seu-imovel"
+                            class="text-accent-300 hover:text-primary-400 transition-colors duration-200 flex items-center gap-2"
+                        >
+                            <i class="ph ph-caret-right text-sm"></i> Anuncie seu
+                            Imóvel
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h3 class="font-display font-semibold text-lg mb-6">Contato</h3>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <i
+                            class="ph-bold ph-whatsapp-logo text-primary-400 text-xl mt-0.5"
+                        ></i>
+                        <div>
+                            <p class="text-accent-400 text-sm">WhatsApp</p>
+                            <a
+                                href="https://wa.me/5511947708668"
+                                class="text-white hover:text-primary-400 transition-colors"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                (11) 94770-8668
+                            </a>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i
+                            class="ph-bold ph-envelope text-primary-400 text-xl mt-0.5"
+                        ></i>
+                        <div>
+                            <p class="text-accent-400 text-sm">Email</p>
+                            <a
+                                href="mailto:contato@mcassessoria.com.br"
+                                class="text-white hover:text-primary-400 transition-colors"
+                            >
+                                contato@mcassessoria.com.br
+                            </a>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i
+                            class="ph-bold ph-map-pin text-primary-400 text-xl mt-0.5"
+                        ></i>
+                        <div>
+                            <p class="text-accent-400 text-sm">Localização</p>
+                            <span class="text-white">São Paulo, SP</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t border-accent-800">
+        <div
+            class="container-custom py-6 flex flex-col sm:flex-row items-center justify-between gap-4"
+        >
+            <p class="text-accent-400 text-sm text-center sm:text-left">
+                © {currentYear} MC Assessoria Imobiliária. Todos os direitos reservados.
+            </p>
+            <div class="flex items-center gap-6">
+                <a
+                    href="/politica-privacidade"
+                    class="text-accent-400 hover:text-primary-400 text-sm transition-colors"
+                >
+                    Política de Privacidade
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- AI Chatbot -->
+<Chatbot />

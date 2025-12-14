@@ -1,0 +1,266 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CardImovel from "../components/CardImovel.astro";
+import { imoveis } from "../data/imoveis";
+
+const featuredImoveis = imoveis.slice(0, 6);
+---
+
+<BaseLayout title="MC Assessoria Imobiliária - Imóveis Comerciais em São Paulo">
+    <Header variant="hero" />
+
+    <!-- Hero Section -->
+    <section
+        class="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden"
+    >
+        <!-- Background pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div
+                class="absolute inset-0"
+                style="background-image: url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%23ffffff%22 fill-opacity=%220.4%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"
+            >
+            </div>
+        </div>
+
+        <!-- Gradient overlays -->
+        <div
+            class="absolute top-0 right-0 w-1/2 h-1/2 bg-primary-500/20 rounded-full blur-3xl"
+        >
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-1/2 h-1/2 bg-primary-600/10 rounded-full blur-3xl"
+        >
+        </div>
+
+        <div class="container-custom relative z-10 text-center py-32">
+            <div class="max-w-4xl mx-auto animate-fade-in">
+                <span
+                    class="inline-block px-4 py-2 bg-primary-500/20 text-primary-300 rounded-full text-sm font-medium mb-6"
+                >
+                    <i class="ph ph-buildings mr-2"></i>
+                    Especialistas em Imóveis Comerciais
+                </span>
+
+                <h1
+                    class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6"
+                >
+                    Encontre o <span
+                        class="text-gradient bg-gradient-to-r from-primary-300 to-primary-500"
+                        >imóvel ideal</span
+                    > para seu negócio
+                </h1>
+
+                <p
+                    class="text-lg md:text-xl text-accent-300 max-w-2xl mx-auto mb-10"
+                >
+                    Galpões, lojas e espaços comerciais com a melhor estrutura
+                    para fazer sua empresa crescer. Descubra oportunidades
+                    exclusivas em São Paulo e região.
+                </p>
+
+                <div
+                    class="flex flex-col sm:flex-row items-center justify-center gap-4"
+                >
+                    <a href="/imoveis" class="btn-primary text-lg">
+                        <i class="ph-bold ph-magnifying-glass"></i>
+                        Ver Imóveis
+                    </a>
+                    <a
+                        href="https://wa.me/5511947708668?text=Oi,%20vim%20pelo%20site,%20poderia%20me%20ajudar?"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-outline border-white/30 text-white hover:bg-white hover:text-accent-900"
+                    >
+                        <i class="ph-bold ph-whatsapp-logo"></i>
+                        Fale Conosco
+                    </a>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div
+                class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto"
+            >
+                <div
+                    class="text-center animate-slide-up"
+                    style="animation-delay: 0.1s"
+                >
+                    <p class="text-3xl md:text-4xl font-bold text-white mb-1">
+                        26+
+                    </p>
+                    <p class="text-accent-400 text-sm">Imóveis Disponíveis</p>
+                </div>
+                <div
+                    class="text-center animate-slide-up"
+                    style="animation-delay: 0.2s"
+                >
+                    <p class="text-3xl md:text-4xl font-bold text-white mb-1">
+                        15+
+                    </p>
+                    <p class="text-accent-400 text-sm">Cidades Atendidas</p>
+                </div>
+                <div
+                    class="text-center animate-slide-up"
+                    style="animation-delay: 0.3s"
+                >
+                    <p class="text-3xl md:text-4xl font-bold text-white mb-1">
+                        100%
+                    </p>
+                    <p class="text-accent-400 text-sm">Satisfação</p>
+                </div>
+                <div
+                    class="text-center animate-slide-up"
+                    style="animation-delay: 0.4s"
+                >
+                    <p class="text-3xl md:text-4xl font-bold text-white mb-1">
+                        24h
+                    </p>
+                    <p class="text-accent-400 text-sm">Atendimento</p>
+                </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div
+                class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
+            >
+                <i class="ph ph-caret-down text-3xl text-white/50"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-accent-50 dark:bg-accent-900">
+        <div class="container-custom">
+            <div class="text-center mb-16">
+                <h2 class="section-title">Por que escolher a MC Assessoria?</h2>
+                <p class="section-subtitle max-w-2xl mx-auto">
+                    Somos especialistas em encontrar o espaço perfeito para o
+                    seu negócio prosperar
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div
+                    class="card p-8 text-center group hover:-translate-y-2 transition-transform duration-300"
+                >
+                    <div
+                        class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center group-hover:bg-primary-500 transition-colors duration-300"
+                    >
+                        <i
+                            class="ph-bold ph-buildings text-3xl text-primary-600 dark:text-primary-400 group-hover:text-white transition-colors duration-300"
+                        ></i>
+                    </div>
+                    <h3
+                        class="font-display font-semibold text-xl text-accent-900 dark:text-white mb-3"
+                    >
+                        Variedade de Imóveis
+                    </h3>
+                    <p class="text-accent-600 dark:text-accent-400">
+                        Galpões, salões comerciais e lojas em diversas
+                        localizações estratégicas.
+                    </p>
+                </div>
+
+                <div
+                    class="card p-8 text-center group hover:-translate-y-2 transition-transform duration-300"
+                >
+                    <div
+                        class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center group-hover:bg-primary-500 transition-colors duration-300"
+                    >
+                        <i
+                            class="ph-bold ph-handshake text-3xl text-primary-600 dark:text-primary-400 group-hover:text-white transition-colors duration-300"
+                        ></i>
+                    </div>
+                    <h3
+                        class="font-display font-semibold text-xl text-accent-900 dark:text-white mb-3"
+                    >
+                        Atendimento Personalizado
+                    </h3>
+                    <p class="text-accent-600 dark:text-accent-400">
+                        Nossa equipe está pronta para entender suas necessidades
+                        e encontrar a melhor solução.
+                    </p>
+                </div>
+
+                <div
+                    class="card p-8 text-center group hover:-translate-y-2 transition-transform duration-300"
+                >
+                    <div
+                        class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center group-hover:bg-primary-500 transition-colors duration-300"
+                    >
+                        <i
+                            class="ph-bold ph-lightning text-3xl text-primary-600 dark:text-primary-400 group-hover:text-white transition-colors duration-300"
+                        ></i>
+                    </div>
+                    <h3
+                        class="font-display font-semibold text-xl text-accent-900 dark:text-white mb-3"
+                    >
+                        Processo Ágil
+                    </h3>
+                    <p class="text-accent-600 dark:text-accent-400">
+                        Facilitamos toda a negociação para você iniciar suas
+                        operações rapidamente.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section class="py-20 bg-white dark:bg-accent-950">
+        <div class="container-custom">
+            <div
+                class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-12"
+            >
+                <div>
+                    <h2 class="section-title">Imóveis em Destaque</h2>
+                    <p class="section-subtitle">
+                        Confira as melhores oportunidades do momento
+                    </p>
+                </div>
+                <a href="/imoveis" class="btn-primary">
+                    Ver Todos
+                    <i class="ph-bold ph-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {featuredImoveis.map((item) => <CardImovel item={item} />)}
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-primary relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div
+                class="absolute top-0 left-0 w-full h-full"
+                style="background-image: url('data:image/svg+xml,%3Csvg width=%2220%22 height=%2220%22 viewBox=%220 0 20 20%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22%23ffffff%22 fill-opacity=%220.4%22 fill-rule=%22evenodd%22%3E%3Ccircle cx=%223%22 cy=%223%22 r=%223%22/%3E%3Ccircle cx=%2213%22 cy=%2213%22 r=%223%22/%3E%3C/g%3E%3C/svg%3E');"
+            >
+            </div>
+        </div>
+
+        <div class="container-custom relative z-10 text-center">
+            <h2
+                class="text-3xl md:text-4xl font-display font-bold text-white mb-6"
+            >
+                Tem um imóvel para alugar?
+            </h2>
+            <p class="text-lg text-white/80 max-w-2xl mx-auto mb-8">
+                Cadastre seu imóvel gratuitamente e alcance milhares de empresas
+                em busca do espaço ideal.
+            </p>
+            <a
+                href="/indique-seu-imovel"
+                class="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary-600 font-semibold rounded-xl hover:bg-accent-50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+            >
+                <i class="ph-bold ph-plus-circle text-xl"></i>
+                Cadastrar Imóvel
+            </a>
+        </div>
+    </section>
+
+    <Footer />
+</BaseLayout>

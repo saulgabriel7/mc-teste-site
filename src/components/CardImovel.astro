@@ -1,0 +1,118 @@
+---
+interface Props {
+    item: {
+        id: number;
+        codigo: string;
+        tipo: string;
+        imagem: string;
+        imovel: string;
+        descricao: string;
+        cidade: string;
+        preco: string;
+    };
+}
+
+const { item } = Astro.props;
+const tipoLabel = item.tipo === "locacao" ? "Locação" : "Venda";
+const tipoBadgeColor =
+    item.tipo === "locacao"
+        ? "bg-primary-500 text-white"
+        : "bg-amber-500 text-white";
+---
+
+<article class="card group overflow-hidden animate-fade-in">
+    <a href={`/imoveis/imovel/${item.codigo}`} class="block">
+        <!-- Image Container -->
+        <div class="relative aspect-[4/3] overflow-hidden">
+            <img
+                src={item.imagem}
+                alt={item.imovel}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
+            />
+            <!-- Overlay gradient -->
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-accent-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            >
+            </div>
+
+            <!-- Badge -->
+            <div
+                class={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide ${tipoBadgeColor}`}
+            >
+                {tipoLabel}
+            </div>
+
+            <!-- Quick view button -->
+            <div
+                class="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300"
+            >
+                <span
+                    class="inline-flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm text-accent-900 rounded-full text-sm font-medium"
+                >
+                    <i class="ph-bold ph-eye"></i> Ver detalhes
+                </span>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="p-5">
+            <!-- Location badge -->
+            <div
+                class="flex items-center gap-2 text-accent-500 dark:text-accent-400 text-sm mb-2"
+            >
+                <i class="ph ph-map-pin"></i>
+                <span>{item.cidade}</span>
+            </div>
+
+            <!-- Title -->
+            <h3
+                class="font-display font-semibold text-lg text-accent-900 dark:text-white mb-2 line-clamp-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-300"
+            >
+                {item.imovel}
+            </h3>
+
+            <!-- Description -->
+            <p
+                class="text-accent-600 dark:text-accent-400 text-sm line-clamp-2 mb-4"
+            >
+                {item.descricao}
+            </p>
+
+            <!-- Footer -->
+            <div
+                class="flex items-center justify-between pt-4 border-t border-accent-100 dark:border-accent-700"
+            >
+                <div>
+                    <p
+                        class="text-xs text-accent-500 dark:text-accent-400 uppercase tracking-wide"
+                    >
+                        A partir de
+                    </p>
+                    <p
+                        class="text-lg font-bold text-primary-600 dark:text-primary-400"
+                    >
+                        {item.preco}
+                    </p>
+                </div>
+                <div
+                    class="w-10 h-10 flex items-center justify-center rounded-full bg-accent-100 dark:bg-accent-700 group-hover:bg-primary-500 transition-colors duration-300"
+                >
+                    <i
+                        class="ph-bold ph-arrow-right text-accent-600 dark:text-accent-300 group-hover:text-white transition-colors duration-300"
+                    ></i>
+                </div>
+            </div>
+        </div>
+    </a>
+</article>
+
+<style>
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>
