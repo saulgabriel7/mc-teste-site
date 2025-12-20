@@ -328,6 +328,18 @@ export const imoveis: Imovel[] = [
         cidade: 'São Paulo',
         bairro: 'Butantã',
         preco: 'R$ 48.000 / mês'
+    },
+    {
+        id: 27,
+        codigo: 'IMV027',
+        tipo: 'locacao',
+        imagem: '/IMV027/1.jpeg',
+        imagens: Array.from({ length: 66 }, (_, i) => `/IMV027/${i + 1}.jpeg`),
+        imovel: 'Casa Jardim Maraca - SP',
+        descricao: 'Descrição do imóvel...',
+        cidade: 'São Paulo',
+        bairro: 'Jardim Maraca',
+        preco: 'R$ 0,00 / mês'
     }
 ];
 
