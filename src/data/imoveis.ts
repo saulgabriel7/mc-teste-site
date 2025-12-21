@@ -332,14 +332,98 @@ export const imoveis: Imovel[] = [
     {
         id: 27,
         codigo: 'IMV027',
-        tipo: 'locacao',
+        tipo: 'venda',
         imagem: '/IMV027/1.jpeg',
         imagens: Array.from({ length: 66 }, (_, i) => `/IMV027/${i + 1}.jpeg`),
         imovel: 'Casa Jardim Maraca - SP',
-        descricao: 'Descrição do imóvel...',
+        descricao: 'Casa com 4 suítes, 2 salas, 2 lavanderias, cozinha, copa, 6 vagas de garagem e área de churrasco.',
         cidade: 'São Paulo',
         bairro: 'Jardim Maraca',
-        preco: 'R$ 0,00 / mês'
+        preco: 'R$ 750.000,00'
+    },
+    {
+        id: 28,
+        codigo: 'IMV028',
+        tipo: 'venda',
+        imagem: '/IMV028/1.jpeg',
+        imagens: Array.from({ length: 52 }, (_, i) => `/IMV028/${i + 1}.jpeg`),
+        imovel: 'Casa Parque Maria Helena - SP',
+        descricao: 'Casa com 3 dormitórios, sala, copa, cozinha, área de serviço, área de churrasco, piscina e 3 vagas de garagem. Aceita permuta por Chácara.',
+        cidade: 'São Paulo',
+        bairro: 'Parque Maria Helena',
+        preco: 'R$ 1.600.000,00'
+    },
+    {
+        id: 29,
+        codigo: 'IMV029',
+        tipo: 'venda',
+        imagem: '/IMV029/1.jpeg',
+        imagens: Array.from({ length: 24 }, (_, i) => `/IMV029/${i + 1}.jpeg`),
+        imovel: 'Apartamento Morumbi 90m² - São Paulo/SP',
+        descricao: 'Apartamento com 3 suítes, sala, cozinha, lavanderia e 4 vagas de garagem.',
+        cidade: 'São Paulo',
+        bairro: 'Morumbi',
+        preco: 'R$ 800.000,00'
+    },
+    {
+        id: 30,
+        codigo: 'IMV030',
+        tipo: 'locacao',
+        imagem: '/IMV030/1.jpeg',
+        imagens: Array.from({ length: 4 }, (_, i) => `/IMV030/${i + 1}.jpeg`),
+        imovel: 'Galpão, 1400m² - Jabaquara/SP',
+        descricao: 'Galpão com 1400m², 40 vagas. IPTU R$ 20.000 mensal.',
+        cidade: 'São Paulo',
+        bairro: 'Jabaquara',
+        preco: 'R$ 90.000 / mês'
+    },
+    {
+        id: 31,
+        codigo: 'IMV031',
+        tipo: 'venda',
+        imagem: '/IMV031/1.jpeg',
+        imagens: Array.from({ length: 52 }, (_, i) => `/IMV031/${i + 1}.jpeg`),
+        imovel: 'Casa Parque Maria Helena - SP',
+        descricao: 'Casa com 3 dormitórios, sala, copa, cozinha, área de serviço, área de churrasco, piscina e 3 vagas de garagem. Aceita permuta por Chácara.',
+        cidade: 'Suzano',
+        bairro: 'Parque Maria Helena',
+        preco: 'R$ 1.600.000,00'
+    },
+    {
+        id: 32,
+        codigo: 'IMV032',
+        tipo: 'locacao',
+        imagem: '/IMV032/1.jpeg',
+        imagens: Array.from({ length: 21 }, (_, i) => `/IMV032/${i + 1}.jpeg`),
+        imovel: 'Imóvel Comercial, 250m² - Morumbi/SP',
+        descricao: 'Imóvel com 250m² e 40 vagas.',
+        cidade: 'São Paulo',
+        bairro: 'Morumbi',
+        preco: 'R$ 25.000 / mês'
+    },
+    {
+        id: 33,
+        codigo: 'IMV033',
+        tipo: 'locacao',
+        imagem: '/IMV033/1.jpeg',
+        imagens: Array.from({ length: 38 }, (_, i) => `/IMV033/${i + 1}.jpeg`),
+        imovel: 'Galpão, 1750m² - Vila Esperança/SP',
+        descricao: 'Galpão com 1750m², 400m² de mezanino, elevador, 17 banheiros, 40 vagas. Localizado a 600m do metrô Vila Matilde.',
+        cidade: 'São Paulo',
+        bairro: 'Vila Esperança',
+        preco: 'R$ 150.000 / mês'
+    },
+    {
+        id: 34,
+        codigo: 'IMV034',
+        tipo: 'locacao',
+        imagem: '/IMV034/1.jpeg',
+        imagens: Array.from({ length: 19 }, (_, i) => `/IMV034/${i + 1}.jpeg`),
+        imovel: 'Galpão, 2000m² - Grajaú/SP',
+        descricao: 'Galpão com 2000m² e 50 vagas.',
+        cidade: 'São Paulo',
+        bairro: 'Grajaú',
+        preco: 'R$ 30.000 / mês'
     }
 ];
 
