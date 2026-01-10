@@ -424,6 +424,18 @@ export const imoveis: Imovel[] = [
         cidade: 'São Paulo',
         bairro: 'Grajaú',
         preco: 'R$ 30.000 / mês'
+    },
+    {
+        id: 35,
+        codigo: 'IMV035',
+        tipo: 'venda',
+        imagem: '/IMV035/1.jpeg',
+        imagens: Array.from({ length: 29 }, (_, i) => `/IMV035/${i + 1}.jpeg`),
+        imovel: 'Apartamento, 127m² - Morumbi/SP',
+        descricao: 'Apartamento de alto padrão com 127 m², localizado no 13º andar, oferecendo conforto, espaço e excelente localização. O imóvel conta com 3 suítes, sala ampla integrada à área gourmet, ideal para receber amigos e família, além de 2 vagas de garagem e depósito privativo. Planta bem distribuída, com ótima iluminação e ventilação natural. Situado na Av. Dr. Luís Migliano, 1870, em região valorizada e com fácil acesso a comércios, serviços e principais vias da cidade. Condomínio: R$ 1.300,00. IPTU: R$ 601,00.',
+        cidade: 'São Paulo',
+        bairro: 'Morumbi',
+        preco: 'R$ 1.500.000,00'
     }
 ];
 
